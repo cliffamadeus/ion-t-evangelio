@@ -1,0 +1,7 @@
+{
+  "name": "ion-t-evangelio",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react-vite"
+}
