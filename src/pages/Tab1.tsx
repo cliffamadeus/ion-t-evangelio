@@ -17,16 +17,17 @@ const Tab1: React.FC = () => {
             <IonTitle size="large">Profile</IonTitle>
           </IonToolbar>
         </IonHeader>
-
+        
+      //Card
         <IonCard>
-          <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />
+          <img alt="Silhouette of mountains" src="../src/assets/img/avatar.png" />
           <IonCardHeader>
             <IonCardTitle>Cliffmeister</IonCardTitle>
             <IonCardSubtitle>Instructor?</IonCardSubtitle>
           </IonCardHeader>
-
           <IonCardContent>Quote: Nothing more, nothing less.</IonCardContent>
         </IonCard>
+
       </IonContent>
     </IonPage>
   );
