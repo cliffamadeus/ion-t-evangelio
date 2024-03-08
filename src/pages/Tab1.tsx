@@ -17,8 +17,7 @@ const Tab1: React.FC = () => {
             <IonTitle size="large">Profile</IonTitle>
           </IonToolbar>
         </IonHeader>
-        
-      //Card
+
         <IonCard>
           <img alt="Silhouette of mountains" src="../src/assets/img/avatar.png" />
           <IonCardHeader>
