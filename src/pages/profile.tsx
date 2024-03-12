@@ -1,11 +1,12 @@
 import {
   IonContent, IonHeader, IonPage, IonTitle, IonToolbar,
+  //Activity 1
   IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle,
-  IonAlert, IonButton,
-  IonActionSheet} from '@ionic/react';
+  //Activity 2
+  IonAlert, IonButton, IonActionSheet} from '@ionic/react';
 import './profile.css';
 
-const Tab1: React.FC = () => {
+const Profile: React.FC = () => {
   return (
     <IonPage>
       <IonHeader>
@@ -36,7 +37,6 @@ const Tab1: React.FC = () => {
             message="A message should be a short, complete sentence."
             buttons={['Action']}
           ></IonAlert>
-
 
           <IonButton fill="clear" id="open-action-sheet" expand="block">Open Action Sheet</IonButton>
           <IonActionSheet
@@ -73,4 +73,4 @@ const Tab1: React.FC = () => {
   );
 };
 
-export default Tab1;
+export default Profile;
