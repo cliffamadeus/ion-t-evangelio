@@ -3,7 +3,6 @@ import {
   IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle,
   IonAlert, IonButton,
   IonActionSheet} from '@ionic/react';
-import ExploreContainer from '../components/ExploreContainer';
 import './profile.css';
 
 const Tab1: React.FC = () => {
@@ -11,7 +10,7 @@ const Tab1: React.FC = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Tab 1</IonTitle>
+          <IonTitle>Profile</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
@@ -22,7 +21,7 @@ const Tab1: React.FC = () => {
         </IonHeader>
 
         <IonCard>
-          <img alt="Silhouette of mountains" src="../src/assets/img/avatar.png" />
+          <img alt="Profile avatar" src="../src/assets/img/avatar.png" />
           <IonCardHeader>
             <IonCardTitle>Cliffmeister</IonCardTitle>
             <IonCardSubtitle>Instructor?</IonCardSubtitle>
@@ -68,11 +67,7 @@ const Tab1: React.FC = () => {
           ></IonActionSheet>
 
         </IonCard>
-
-
-       
-
-
+        
       </IonContent>
     </IonPage>
   );
