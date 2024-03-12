@@ -1,17 +1,17 @@
 import {
   IonContent, IonHeader, IonPage, IonTitle, IonToolbar,
+  //Activity 1
   IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle,
-  IonAlert, IonButton,
-  IonActionSheet} from '@ionic/react';
-import ExploreContainer from '../components/ExploreContainer';
+  //Activity 2
+  IonAlert, IonButton, IonActionSheet} from '@ionic/react';
 import './profile.css';
 
-const Tab1: React.FC = () => {
+const Profile: React.FC = () => {
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Tab 1</IonTitle>
+          <IonTitle>Profile</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
@@ -22,7 +22,7 @@ const Tab1: React.FC = () => {
         </IonHeader>
 
         <IonCard>
-          <img alt="Silhouette of mountains" src="../src/assets/img/avatar.png" />
+          <img alt="Profile avatar" src="../src/assets/img/avatar.png" />
           <IonCardHeader>
             <IonCardTitle>Cliffmeister</IonCardTitle>
             <IonCardSubtitle>Instructor?</IonCardSubtitle>
@@ -37,7 +37,6 @@ const Tab1: React.FC = () => {
             message="A message should be a short, complete sentence."
             buttons={['Action']}
           ></IonAlert>
-
 
           <IonButton fill="clear" id="open-action-sheet" expand="block">Open Action Sheet</IonButton>
           <IonActionSheet
@@ -68,14 +67,10 @@ const Tab1: React.FC = () => {
           ></IonActionSheet>
 
         </IonCard>
-
-
-       
-
-
+        
       </IonContent>
     </IonPage>
   );
 };
 
-export default Tab1;
+export default Profile;
