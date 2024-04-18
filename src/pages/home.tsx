@@ -1,8 +1,11 @@
 import {
     //Initial Components
     IonContent, IonHeader, IonPage, IonTitle, IonToolbar,
-    IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle
+    IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle,
+    IonIcon,
 } from '@ionic/react';
+
+import { logoIonic } from 'ionicons/icons';
 
 // CSS
 //import './profile.css';
@@ -26,6 +29,7 @@ import {
           <IonCard>
             <IonCardHeader>
               <IonCardTitle>Click Counter</IonCardTitle>
+              <IonIcon icon={logoIonic} size="large" color="primary"></IonIcon>
               <IonCardSubtitle>Applet #1 </IonCardSubtitle>
             </IonCardHeader>
 
