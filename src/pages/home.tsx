@@ -2,14 +2,16 @@ import {
     //Initial Components
     IonContent, IonHeader, IonPage, IonTitle, IonToolbar,
     IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle,
-    IonIcon, IonCol, IonGrid, IonRow
+    IonIcon, IonCol, IonGrid, IonRow,  IonButton, IonNavLink
 } from '@ionic/react';
+//Custom CSS
 import './home.css';
 
+//Ionic Icons
 import { speedometerOutline,calculator} from 'ionicons/icons';
 
-// CSS
-//import './profile.css';
+//Additional Routes
+import ClickCounter from './clickcounter';
   
   const Home: React.FC = () => {
     return (
@@ -27,7 +29,7 @@ import { speedometerOutline,calculator} from 'ionicons/icons';
           </IonHeader>
 
           {/*Click counter card*/}
-          <IonCard href="/clickcounter">
+          <IonCard href='/clickcounter' >
             <IonCardHeader>
               <IonCardTitle>
                 <IonGrid>
@@ -38,6 +40,11 @@ import { speedometerOutline,calculator} from 'ionicons/icons';
                   <IonCol pull='3'>
                     <div className="home-card-title">Click Counter</div>
                     <IonCardSubtitle>Applet #1 </IonCardSubtitle>
+                    {/*
+                    <IonNavLink routerDirection="forward" component={() => <ClickCounter />}>
+                      <IonButton>Navigate</IonButton>
+                    </IonNavLink>
+                    */}
                   </IonCol>
                     </IonRow>
                 </IonGrid>
