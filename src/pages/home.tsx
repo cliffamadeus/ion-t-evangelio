@@ -27,7 +27,7 @@ import { logoIonic,bowlingBall,calculator} from 'ionicons/icons';
           </IonHeader>
 
           {/*Click counter card*/}
-          <IonCard>
+          <IonCard href="/clickcounter">
             <IonCardHeader>
               <IonCardTitle>
                 <IonGrid>

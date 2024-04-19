@@ -1,16 +1,19 @@
 import { 
   IonContent, IonHeader, IonPage, IonTitle, IonToolbar,
   IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle,
-  IonButton,IonIcon 
+  IonButton, IonBackButton, IonButtons, IonIcon 
 } from '@ionic/react';
 import './clickcounter.css';
-import { arrowUndo} from 'ionicons/icons';
+import { arrowUndo,caretBack} from 'ionicons/icons';
 
 const ClickCounter: React.FC = () => {
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar>
+           <IonButton slot="start"  fill="clear"  href="/home">
+            Back
+          </IonButton>
           <IonTitle>Click Counter</IonTitle>
         </IonToolbar>
       </IonHeader>
