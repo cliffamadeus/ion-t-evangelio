@@ -1,12 +1,29 @@
 import { 
+  //Page defailts
   IonContent, IonHeader, IonPage, IonTitle, IonToolbar,
+  //Ionic Card
   IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle,
+  //Ionic buttons
   IonButton, IonBackButton, IonButtons, IonIcon 
 } from '@ionic/react';
-import './clickcounter.css';
+//Ionicons
 import { arrowUndo,caretBack} from 'ionicons/icons';
 
+import React, { useState } from 'react';
+import './clickcounter.css';
+
+
 const ClickCounter: React.FC = () => {
+  const [clickCount, setClickCount] = useState(0);
+
+  const handleClick = () => {
+    setClickCount(clickCount + 1);
+  };
+ 
+  const handleClear = () => {
+    setClickCount(0);
+  };
+  
   return (
     <IonPage>
       <IonHeader>
@@ -23,18 +40,19 @@ const ClickCounter: React.FC = () => {
             <IonTitle size="large">Click Counter</IonTitle>
           </IonToolbar>
         </IonHeader>
-      <IonCard>
-        <IonCardHeader>
-          <IonCardTitle>Card Title</IonCardTitle>
-          <IonCardSubtitle>Card Subtitle</IonCardSubtitle>
-        </IonCardHeader>
 
-        <IonCardContent></IonCardContent>
-        <IonButton>Click Me</IonButton>
-        <IonButton fill="clear">Clear</IonButton>
-      </IonCard>
+          <IonCard className="cc-card">
+            <IonCardHeader>
+              {/*
+              <IonCardTitle>Card Title</IonCardTitle>
+              <IonCardSubtitle>Card Subtitle</IonCardSubtitle>
+              */}
+            </IonCardHeader>
+            <p className="cc-output">{clickCount}</p>
+            <IonButton onClick={handleClick}>Click Me</IonButton>
+            <IonButton onClick={handleClear} fill="clear">Clear</IonButton>
+          </IonCard>
 
-        
       </IonContent>
     </IonPage>
   );
