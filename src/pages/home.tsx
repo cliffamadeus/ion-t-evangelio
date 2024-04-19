@@ -2,10 +2,11 @@ import {
     //Initial Components
     IonContent, IonHeader, IonPage, IonTitle, IonToolbar,
     IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle,
-    IonIcon,
+    IonIcon, IonCol, IonGrid, IonRow
 } from '@ionic/react';
+import './home.css';
 
-import { logoIonic } from 'ionicons/icons';
+import { logoIonic,bowlingBall,calculator} from 'ionicons/icons';
 
 // CSS
 //import './profile.css';
@@ -28,18 +29,34 @@ import { logoIonic } from 'ionicons/icons';
           {/*Click counter card*/}
           <IonCard>
             <IonCardHeader>
-              <IonCardTitle>Click Counter</IonCardTitle>
-              <IonIcon icon={logoIonic} size="large" color="primary"></IonIcon>
+              <IonCardTitle>
+                <IonGrid>
+                  <IonRow>
+                  <IonCol ><h1><IonIcon icon={bowlingBall} size="large" color="primary"></IonIcon></h1></IonCol>
+                  <IonCol pull='3'>Click Counter</IonCol>
+                    
+                    </IonRow>
+                </IonGrid>
+
+              </IonCardTitle>
+             
               <IonCardSubtitle>Applet #1 </IonCardSubtitle>
             </IonCardHeader>
 
-            <IonCardContent>A simple click counter applet</IonCardContent>
+            <IonCardContent>A simple click counter</IonCardContent>
           </IonCard>
 
            {/*Calculator card*/}
           <IonCard>
             <IonCardHeader>
-              <IonCardTitle>Calculator</IonCardTitle>
+              <IonCardTitle>
+              <IonGrid>
+                  <IonRow>
+                  <IonCol ><h1><IonIcon icon={calculator} size="large" color="primary"></IonIcon></h1></IonCol>
+                  <IonCol pull='3'>Calculator</IonCol>
+                    </IonRow>
+                </IonGrid>
+              </IonCardTitle>
               <IonCardSubtitle>Applet #2 </IonCardSubtitle>
             </IonCardHeader>
 
