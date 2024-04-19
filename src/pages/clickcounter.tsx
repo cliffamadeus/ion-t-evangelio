@@ -1,22 +1,37 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
-import ExploreContainer from '../components/ExploreContainer';
+import { 
+  IonContent, IonHeader, IonPage, IonTitle, IonToolbar,
+  IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle,
+  IonButton,IonIcon 
+} from '@ionic/react';
 import './clickcounter.css';
+import { arrowUndo} from 'ionicons/icons';
 
 const ClickCounter: React.FC = () => {
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Tab 2</IonTitle>
+          <IonTitle>Click Counter</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
         <IonHeader collapse="condense">
           <IonToolbar>
-            <IonTitle size="large">Tab 2</IonTitle>
+            <IonTitle size="large">Click Counter</IonTitle>
           </IonToolbar>
         </IonHeader>
-        <ExploreContainer name="Tab 2 page" />
+      <IonCard>
+        <IonCardHeader>
+          <IonCardTitle>Card Title</IonCardTitle>
+          <IonCardSubtitle>Card Subtitle</IonCardSubtitle>
+        </IonCardHeader>
+
+        <IonCardContent></IonCardContent>
+        <IonButton>Click Me</IonButton>
+        <IonButton fill="clear">Clear</IonButton>
+      </IonCard>
+
+        
       </IonContent>
     </IonPage>
   );
