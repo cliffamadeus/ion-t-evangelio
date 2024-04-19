@@ -6,7 +6,7 @@ import {
 } from '@ionic/react';
 import './home.css';
 
-import { logoIonic,bowlingBall,calculator} from 'ionicons/icons';
+import { speedometerOutline,calculator} from 'ionicons/icons';
 
 // CSS
 //import './profile.css';
@@ -32,35 +32,36 @@ import { logoIonic,bowlingBall,calculator} from 'ionicons/icons';
               <IonCardTitle>
                 <IonGrid>
                   <IonRow>
-                  <IonCol ><h1><IonIcon icon={bowlingBall} size="large" color="primary"></IonIcon></h1></IonCol>
-                  <IonCol pull='3'>Click Counter</IonCol>
-                    
+                  <IonCol push=".75">
+                    <IonIcon className="home-card-icon"  icon={speedometerOutline} color="primary"></IonIcon>
+                  </IonCol>
+                  <IonCol pull='3'>
+                    <div className="home-card-title">Click Counter</div>
+                    <IonCardSubtitle>Applet #1 </IonCardSubtitle>
+                  </IonCol>
                     </IonRow>
                 </IonGrid>
-
               </IonCardTitle>
-             
-              <IonCardSubtitle>Applet #1 </IonCardSubtitle>
             </IonCardHeader>
-
-            <IonCardContent>A simple click counter</IonCardContent>
           </IonCard>
 
-           {/*Calculator card*/}
-          <IonCard>
+          {/*Click counter card*/}
+          <IonCard href="/">
             <IonCardHeader>
               <IonCardTitle>
-              <IonGrid>
+                <IonGrid>
                   <IonRow>
-                  <IonCol ><h1><IonIcon icon={calculator} size="large" color="primary"></IonIcon></h1></IonCol>
-                  <IonCol pull='3'>Calculator</IonCol>
+                  <IonCol push=".75">
+                    <IonIcon className="home-card-icon"  icon={calculator} color="primary"></IonIcon>
+                  </IonCol>
+                  <IonCol pull='3'>
+                    <div className="home-card-title">Calculator</div>
+                    <IonCardSubtitle>Applet #2 </IonCardSubtitle>
+                  </IonCol>
                     </IonRow>
                 </IonGrid>
               </IonCardTitle>
-              <IonCardSubtitle>Applet #2 </IonCardSubtitle>
             </IonCardHeader>
-
-            <IonCardContent>Basic Arithmetic Calculator</IonCardContent>
           </IonCard>
 
         </IonContent>

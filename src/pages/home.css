@@ -1,4 +1,7 @@
-.ion-5x:before {
-    position: relative;
-    font-size: 5em;
+.home-card-title{
+    font-size: 30px;
+}
+
+.home-card-icon {
+    font-size: 3rem;
 }
