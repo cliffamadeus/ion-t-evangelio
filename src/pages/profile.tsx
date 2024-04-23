@@ -40,6 +40,7 @@ const Profile: React.FC = () => {
     return rizzCard[randomIndex].message;
   };
   
+  
   return (
     <IonPage>
       <IonHeader>
