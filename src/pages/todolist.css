@@ -1,0 +1,14 @@
+.todolist-title{
+    text-align: center;
+    font-size: 20px;
+}
+
+.todolist-form{
+    padding-left: 15px;
+    font-size: 15px;
+}
+
+.todolist-result{
+    font-size: 25px;
+
+}
