@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import {
   IonBackButton,
   IonButton,
@@ -52,11 +53,12 @@ const cardData = [
     subtitle: 'Applet #3',
     link: '/todolist'
   }
-  // Add more card data objects here as needed
+  
 ];
 
-  
   const Home: React.FC = () => {
+    const [searchTerm, setSearchTerm] = useState('');
+
     return (
       <IonPage>
         <IonHeader>
@@ -70,25 +72,33 @@ const cardData = [
               <IonTitle size="large">Home</IonTitle>
             </IonToolbar>
           </IonHeader>
-          {cardData.map((card, index) => (
-            <IonCard key={index} href={card.link}>
-              <IonCardHeader>
-                <IonCardTitle>
-                  <IonGrid>
-                    <IonRow>
-                      <IonCol push=".75">
-                        <IonIcon className="home-card-icon" icon={card.icon} color="primary"></IonIcon>
-                      </IonCol>
-                      <IonCol pull='3'>
-                        <div className="home-card-title">{card.title}</div>
-                        <IonCardSubtitle>{card.subtitle}</IonCardSubtitle>
-                      </IonCol>
-                    </IonRow>
-                  </IonGrid>
-                </IonCardTitle>
-              </IonCardHeader>
-            </IonCard>
-          ))}
+
+        {/*Search bar*/}
+        <IonSearchbar value={searchTerm} onIonChange={(e) => setSearchTerm(e.detail.value!)}></IonSearchbar>
+
+        {/*Home Cards*/}
+        {cardData
+        .filter((card) => card.title.toLowerCase().includes(searchTerm.toLowerCase()))
+        .map((card, index) => (
+          <IonCard key={index} href={card.link}>
+            <IonCardHeader>
+              <IonCardTitle>
+                <IonGrid>
+                  <IonRow>
+                    <IonCol push=".75">
+                      <IonIcon className="home-card-icon" icon={card.icon} color="primary"></IonIcon>
+                    </IonCol>
+                    <IonCol pull='3'>
+                      <div className="home-card-title">{card.title}</div>
+                      <IonCardSubtitle>{card.subtitle}</IonCardSubtitle>
+                    </IonCol>
+                  </IonRow>
+                </IonGrid>
+              </IonCardTitle>
+            </IonCardHeader>
+          </IonCard>
+        ))}
+
         </IonContent>
       </IonPage>
     );
