@@ -8,7 +8,7 @@ import {
 import './home.css';
 
 //Ionic Icons
-import { speedometerOutline,calculator} from 'ionicons/icons';
+import { speedometerOutline,calculator,pencil} from 'ionicons/icons';
 
 //Additional Routes
 import ClickCounter from './clickcounter';
@@ -71,6 +71,25 @@ import ClickCounter from './clickcounter';
             </IonCardHeader>
           </IonCard>
 
+           {/*To do list card*/}
+           <IonCard href="/todolist">
+            <IonCardHeader>
+              <IonCardTitle>
+                <IonGrid>
+                  <IonRow>
+                  <IonCol push=".75">
+                    <IonIcon className="home-card-icon"  icon={pencil} color="primary"></IonIcon>
+                  </IonCol>
+                  <IonCol pull='3'>
+                    <div className="home-card-title">To Do List</div>
+                    <IonCardSubtitle>Applet #3 </IonCardSubtitle>
+                  </IonCol>
+                    </IonRow>
+                </IonGrid>
+              </IonCardTitle>
+            </IonCardHeader>
+          </IonCard>
+          
         </IonContent>
       </IonPage>
     );
