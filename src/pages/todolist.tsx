@@ -21,6 +21,7 @@ import {
   IonRow,
   IonTitle,
   IonToolbar,
+  IonItemDivider
 } from '@ionic/react';
 //Ionicons
 import { trashOutline,pencilOutline} from 'ionicons/icons';
@@ -82,10 +83,10 @@ const Todolist: React.FC = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonButton slot="start" fill="clear">
+          <IonButton slot="start" fill="clear" href='/'>
             Back
           </IonButton>
-          <IonTitle>TODO LIST</IonTitle>
+          <IonTitle>To Do List</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent className="ion-padding">
@@ -117,7 +118,10 @@ const Todolist: React.FC = () => {
               </IonRow>    
 
               {/*Todo list output*/}
-              <h4>The stuff you need to do:</h4>
+              <br></br>
+              <IonItemDivider color="light">
+                <IonLabel>The stuff you need to do</IonLabel>
+              </IonItemDivider>
               <IonList>
                     {todos.map((todo, index) => (
                       <IonItem className="todolist-result" key={index}>
