@@ -26,7 +26,7 @@ import {
 import ExploreContainer from '../components/ExploreContainer';
 import './calculator.css';
 
-const Tab3: React.FC = () => {
+const Calculator: React.FC = () => {
   return (
     <IonPage>
       <IonHeader>
@@ -114,4 +114,4 @@ const Tab3: React.FC = () => {
   );
 };
 
-export default Tab3;
+export default Calculator;
