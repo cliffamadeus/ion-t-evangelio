@@ -17,7 +17,7 @@ import Home from './pages/home';
 
 import Profile from './pages/profile';
 import ClickCounter from './pages/clickcounter'; 
-import Tab3 from './pages/Tab3';
+import Calculator from './pages/calculator';
 import Todolist from './pages/todolist';
 
 /* Core CSS required for Ionic components to work properly */
@@ -63,8 +63,8 @@ const App: React.FC = () => (
           <Route exact path="/clickcounter">
             <ClickCounter />
           </Route>
-          <Route path="/tab3">
-            <Tab3 />
+          <Route path="/calculator">
+            <Calculator />
           </Route>
 
           <Route path="/todolist">

@@ -57,7 +57,9 @@ const cardData = [
 ];
 
   const Home: React.FC = () => {
-    const [searchTerm, setSearchTerm] = useState('');
+    const [searchTerm, setSearchTerm] = useState<string>('');
+
+    
 
     return (
       <IonPage>
@@ -73,34 +75,36 @@ const cardData = [
             </IonToolbar>
           </IonHeader>
 
-        {/*Search bar*/}
-        <IonSearchbar value={searchTerm} onIonChange={(e) => setSearchTerm(e.detail.value!)}></IonSearchbar>
-
-        {/*Home Cards*/}
-        {cardData
-        .filter((card) => card.title.toLowerCase().includes(searchTerm.toLowerCase()))
-        .map((card, index) => (
-          <IonCard key={index} href={card.link}>
-            <IonCardHeader>
-              <IonCardTitle>
-                <IonGrid>
-                  <IonRow>
-                    <IonCol push=".75">
-                      <IonIcon className="home-card-icon" icon={card.icon} color="primary"></IonIcon>
-                    </IonCol>
-                    <IonCol pull='3'>
-                      <div className="home-card-title">{card.title}</div>
-                      <IonCardSubtitle>{card.subtitle}</IonCardSubtitle>
-                    </IonCol>
-                  </IonRow>
-                </IonGrid>
-              </IonCardTitle>
-            </IonCardHeader>
-          </IonCard>
-        ))}
-
-        </IonContent>
-      </IonPage>
+        <>
+          <IonSearchbar 
+            value={searchTerm} 
+            onIonInput={(e) => setSearchTerm(e.target.value ?? '')} // Ensure value is always a string
+          />
+          
+          {cardData
+            .filter((card) => card.title.toLowerCase().includes(searchTerm.toLowerCase()))
+            .map((card, index) => (
+              <IonCard key={index} href={card.link}>
+                <IonCardHeader>
+                  <IonCardTitle>
+                    <IonGrid>
+                      <IonRow>
+                        <IonCol push=".75">
+                          <IonIcon className="home-card-icon" icon={card.icon} color="primary" />
+                        </IonCol>
+                        <IonCol pull='3'>
+                          <div className="home-card-title">{card.title}</div>
+                          <IonCardSubtitle>{card.subtitle}</IonCardSubtitle>
+                        </IonCol>
+                      </IonRow>
+                    </IonGrid>
+                  </IonCardTitle>
+                </IonCardHeader>
+              </IonCard>
+          ))}
+        </>
+          </IonContent>
+        </IonPage>
     );
   };
   
