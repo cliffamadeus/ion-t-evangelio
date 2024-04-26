@@ -10,9 +10,3 @@ root.render(
     <App />
   </React.StrictMode>
 );
-
-import Home from './pages/home';;
-function Example() {
-  return <IonNav root={() => <Home />}></IonNav>;
-}
-export default Example;
