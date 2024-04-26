@@ -71,7 +71,7 @@ const QuotesGenerator: React.FC = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Profile</IonTitle>
+          <IonTitle>Quote Generator</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
