@@ -23,7 +23,7 @@ import {
   IonItemDivider,
   IonSearchbar
 } from '@ionic/react';
-import ExploreContainer from '../components/ExploreContainer';
+import ExploreContainer from '../../components/ExploreContainer';
 import './calculator.css';
 
 const Calculator: React.FC = () => {

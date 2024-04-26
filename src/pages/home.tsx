@@ -32,7 +32,7 @@ import './home.css';
 import { speedometerOutline,calculator,pencil, chatbubble} from 'ionicons/icons';
 
 //Additional Routes
-import ClickCounter from './clickcounter';
+import ClickCounter from './clickcounter/clickcounter';
 
 const cardData = [
   {

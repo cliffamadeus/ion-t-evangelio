@@ -31,9 +31,10 @@ import {
 import './profile.css';
 
 //Dynamic data reference
-import rizzCard from '../assets/json/rizzCard.json';
+import rizzCard from '../../assets/json/rizzCard.json';
 
-const QuoteGenerator: React.FC = () => {
+const Profile: React.FC = () => {
+
 
   const [showAlert, setShowAlert] = useState(false);
   const [randomIndex, setRandomIndex] =  useState<number | null>(null); // State to store random index
@@ -64,28 +65,47 @@ const QuoteGenerator: React.FC = () => {
     setRandomIndex(0); // Reset the index to 0
     setShowAlert(false); // Hide the alert
   };
+
+  
   
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Quote Generator</IonTitle>
+          <IonTitle>Profile</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
         <IonHeader collapse="condense">
           <IonToolbar>
-            <IonTitle size="large">Quote Generator</IonTitle>
+            <IonTitle size="large">Profile</IonTitle>
           </IonToolbar>
         </IonHeader>
 
         <IonCard>
+          {/*Avatar and name*/}
+          <IonGrid>
+            <IonRow>
+                <IonCol size="1.5" push="">
+                  <IonAvatar>
+                    <img alt="Silhouette of a person's head" src="../src/assets/img/avatar.png" />
+                  </IonAvatar>
+                </IonCol>
+                <IonCol size="9" pull="">
+                  <IonCardTitle>Cliff Amadeus F. Evangelio</IonCardTitle>
+                  <IonCardSubtitle>Instructor 1 - NBSC BSIT</IonCardSubtitle>
+                </IonCol>
+            </IonRow>
+          </IonGrid>
 
-          {/*Button Trigger*/}
+          {/*Button Grid*/}
           <IonGrid>
             <IonRow>
                 <IonCol size="" push="">
-                <IonButton id="present-alert" color="warning" expand="full" onClick={handleOpenAlert}>Click me</IonButton> 
+
+                <IonButton id="present-alert" color="warning" expand="full" onClick={handleOpenAlert}>
+                  Quick Facts
+                </IonButton>
                 <IonAlert
                   isOpen={showAlert}
                   onDidDismiss={handleAlertDismiss} // Call the handleAlertDismiss function when the alert is closed
@@ -94,13 +114,46 @@ const QuoteGenerator: React.FC = () => {
                   message={renderRandomMessage()}
                   buttons={['Close']}
                 />
+
+                </IonCol>
+                <IonCol size="" pull="">
+                  <IonButton fill="clear" id="open-action-sheet" expand="block">Open Action Sheet</IonButton>
                 </IonCol>
             </IonRow>
           </IonGrid>
+          <IonCardContent>Quote: Nothing more, nothing less.</IonCardContent>
+             
+          {/* Actionsheet*/}
+          <IonActionSheet
+            trigger="open-action-sheet"
+            header="Actions"
+            buttons={[
+              {
+                text: 'Delete',
+                role: 'destructive',
+                data: {
+                  action: 'delete',
+                },
+              },
+              {
+                text: 'Share',
+                data: {
+                  action: 'share',
+                },
+              },
+              {
+                text: 'Cancel',
+                role: 'cancel',
+                data: {
+                  action: 'cancel',
+                },
+              },
+            ]}
+          ></IonActionSheet>
         </IonCard>  
       </IonContent>
     </IonPage>
   );
 };
 
-export default  QuoteGenerator;
+export default Profile;
