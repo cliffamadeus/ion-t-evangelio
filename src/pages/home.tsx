@@ -32,7 +32,7 @@ import './home.css';
 import { speedometerOutline,calculator,pencil, chatbubble} from 'ionicons/icons';
 
 //Additional Routes
-import ClickCounter from './clickcounter';
+import ClickCounter from './clickcounter/clickcounter';
 
 const cardData = [
   {
@@ -57,7 +57,7 @@ const cardData = [
     title: 'Quotes Generator',
     icon: chatbubble,
     subtitle: 'Applet #4',
-    link: '/quotesgenerator'
+    link: '/quotegenerator'
   }
   
 ];

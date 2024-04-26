@@ -15,11 +15,11 @@ import { calculatorOutline, ellipse, home, personOutline, speedometerOutline, sq
 // Home resources
 import Home from './pages/home';
 
-import Profile from './pages/profile';
-import ClickCounter from './pages/clickcounter'; 
-import Calculator from './pages/calculator';
-import Todolist from './pages/todolist';
-import QuotesGenerator from './pages/quotesgenerator';
+import Profile from './pages/profile/profile';
+import ClickCounter from './pages/clickcounter/clickcounter'; 
+import Calculator from './pages/calculator/calculator';
+import Todolist from './pages/todolist/todolist';
+import QuoteGenerator from './pages/quotegenerator/quotegenerator';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -72,8 +72,8 @@ const App: React.FC = () => (
             <Todolist />
           </Route>
 
-          <Route path="/quotesgenerator">
-            <QuotesGenerator />
+          <Route path="/quotegenerator">
+            <QuoteGenerator />
           </Route>
 
         </IonRouterOutlet>

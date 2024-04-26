@@ -28,12 +28,11 @@ import {
   IonAvatar,
   IonThumbnail
 } from '@ionic/react';
-import './profile.css';
 
 //Dynamic data reference
-import rizzCard from '../assets/json/rizzCard.json';
+import rizzCard from '../../assets/json/rizzCard.json';
 
-const QuotesGenerator: React.FC = () => {
+const QuoteGenerator: React.FC = () => {
 
   const [showAlert, setShowAlert] = useState(false);
   const [randomIndex, setRandomIndex] =  useState<number | null>(null); // State to store random index
@@ -64,8 +63,6 @@ const QuotesGenerator: React.FC = () => {
     setRandomIndex(0); // Reset the index to 0
     setShowAlert(false); // Hide the alert
   };
-
-  
   
   return (
     <IonPage>
@@ -74,15 +71,14 @@ const QuotesGenerator: React.FC = () => {
           <IonTitle>Quote Generator</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent fullscreen>
+      <IonContent className='ion-padding'>
         <IonHeader collapse="condense">
           <IonToolbar>
             <IonTitle size="large">Quote Generator</IonTitle>
           </IonToolbar>
         </IonHeader>
 
-        <IonCard>
-
+        <img alt="Silhouette of mountains" src="https://pbs.twimg.com/media/F6SEuqhW0AAJxD5.jpg" />
           {/*Button Trigger*/}
           <IonGrid>
             <IonRow>
@@ -99,10 +95,9 @@ const QuotesGenerator: React.FC = () => {
                 </IonCol>
             </IonRow>
           </IonGrid>
-        </IonCard>  
       </IonContent>
     </IonPage>
   );
 };
 
-export default  QuotesGenerator;
+export default  QuoteGenerator;
