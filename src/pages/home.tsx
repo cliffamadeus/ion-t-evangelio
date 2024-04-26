@@ -29,7 +29,7 @@ import {
 import './home.css';
 
 //Ionic Icons
-import { speedometerOutline,calculator,pencil} from 'ionicons/icons';
+import { speedometerOutline,calculator,pencil, chatbubble} from 'ionicons/icons';
 
 //Additional Routes
 import ClickCounter from './clickcounter';
@@ -49,17 +49,23 @@ const cardData = [
   },
   {
     title: 'To Do List',
-    icon: speedometerOutline,
+    icon: pencil,
     subtitle: 'Applet #3',
     link: '/todolist'
+  },
+  {
+    title: 'Quotes Generator',
+    icon: chatbubble,
+    subtitle: 'Applet #4',
+    link: '/quotesgenerator'
   }
   
 ];
 
   const Home: React.FC = () => {
-    const [searchTerm, setSearchTerm] = useState<string>('');
 
-    
+    {/*Dynamic Search*/}
+    const [searchTerm, setSearchTerm] = useState<string>('');
 
     return (
       <IonPage>
@@ -74,11 +80,11 @@ const cardData = [
               <IonTitle size="large">Home</IonTitle>
             </IonToolbar>
           </IonHeader>
-
+        {/*Dynamic Search*/}
         <>
           <IonSearchbar 
             value={searchTerm} 
-            onIonInput={(e) => setSearchTerm(e.target.value ?? '')} // Ensure value is always a string
+            onIonInput={(e) => setSearchTerm(e.target.value ?? '')} 
           />
           
           {cardData
