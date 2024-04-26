@@ -57,7 +57,7 @@ const cardData = [
     title: 'Quotes Generator',
     icon: chatbubble,
     subtitle: 'Applet #4',
-    link: '/quotesgenerator'
+    link: '/quotegenerator'
   }
   
 ];

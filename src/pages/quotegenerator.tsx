@@ -33,7 +33,7 @@ import './profile.css';
 //Dynamic data reference
 import rizzCard from '../assets/json/rizzCard.json';
 
-const QuotesGenerator: React.FC = () => {
+const QuoteGenerator: React.FC = () => {
 
   const [showAlert, setShowAlert] = useState(false);
   const [randomIndex, setRandomIndex] =  useState<number | null>(null); // State to store random index
@@ -64,8 +64,6 @@ const QuotesGenerator: React.FC = () => {
     setRandomIndex(0); // Reset the index to 0
     setShowAlert(false); // Hide the alert
   };
-
-  
   
   return (
     <IonPage>
@@ -105,4 +103,4 @@ const QuotesGenerator: React.FC = () => {
   );
 };
 
-export default  QuotesGenerator;
+export default  QuoteGenerator;
