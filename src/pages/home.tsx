@@ -29,10 +29,10 @@ import {
 import './home.css';
 
 //Ionic Icons
-import { speedometerOutline,calculator,pencil} from 'ionicons/icons';
+import { speedometerOutline,calculator,pencil, chatbubble} from 'ionicons/icons';
 
 //Additional Routes
-import ClickCounter from './clickcounter';
+import ClickCounter from './clickcounter/clickcounter';
 
 const cardData = [
   {
@@ -49,15 +49,23 @@ const cardData = [
   },
   {
     title: 'To Do List',
-    icon: speedometerOutline,
+    icon: pencil,
     subtitle: 'Applet #3',
     link: '/todolist'
+  },
+  {
+    title: 'Quotes Generator',
+    icon: chatbubble,
+    subtitle: 'Applet #4',
+    link: '/quotegenerator'
   }
   
 ];
 
   const Home: React.FC = () => {
-    const [searchTerm, setSearchTerm] = useState('');
+
+    {/*Dynamic Search*/}
+    const [searchTerm, setSearchTerm] = useState<string>('');
 
     return (
       <IonPage>
@@ -72,35 +80,37 @@ const cardData = [
               <IonTitle size="large">Home</IonTitle>
             </IonToolbar>
           </IonHeader>
-
-        {/*Search bar*/}
-        <IonSearchbar value={searchTerm} onIonChange={(e) => setSearchTerm(e.detail.value!)}></IonSearchbar>
-
-        {/*Home Cards*/}
-        {cardData
-        .filter((card) => card.title.toLowerCase().includes(searchTerm.toLowerCase()))
-        .map((card, index) => (
-          <IonCard key={index} href={card.link}>
-            <IonCardHeader>
-              <IonCardTitle>
-                <IonGrid>
-                  <IonRow>
-                    <IonCol push=".75">
-                      <IonIcon className="home-card-icon" icon={card.icon} color="primary"></IonIcon>
-                    </IonCol>
-                    <IonCol pull='3'>
-                      <div className="home-card-title">{card.title}</div>
-                      <IonCardSubtitle>{card.subtitle}</IonCardSubtitle>
-                    </IonCol>
-                  </IonRow>
-                </IonGrid>
-              </IonCardTitle>
-            </IonCardHeader>
-          </IonCard>
-        ))}
-
-        </IonContent>
-      </IonPage>
+        {/*Dynamic Search*/}
+        <>
+          <IonSearchbar 
+            value={searchTerm} 
+            onIonInput={(e) => setSearchTerm(e.target.value ?? '')} 
+          />
+          
+          {cardData
+            .filter((card) => card.title.toLowerCase().includes(searchTerm.toLowerCase()))
+            .map((card, index) => (
+              <IonCard key={index} href={card.link}>
+                <IonCardHeader>
+                  <IonCardTitle>
+                    <IonGrid>
+                      <IonRow>
+                        <IonCol push=".75">
+                          <IonIcon className="home-card-icon" icon={card.icon} color="primary" />
+                        </IonCol>
+                        <IonCol pull='3'>
+                          <div className="home-card-title">{card.title}</div>
+                          <IonCardSubtitle>{card.subtitle}</IonCardSubtitle>
+                        </IonCol>
+                      </IonRow>
+                    </IonGrid>
+                  </IonCardTitle>
+                </IonCardHeader>
+              </IonCard>
+          ))}
+        </>
+          </IonContent>
+        </IonPage>
     );
   };
   

@@ -31,7 +31,7 @@ import {
 import './profile.css';
 
 //Dynamic data reference
-import rizzCard from '../assets/json/rizzCard.json';
+import rizzCard from '../../assets/json/rizzCard.json';
 
 const Profile: React.FC = () => {
 
