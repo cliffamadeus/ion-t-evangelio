@@ -83,11 +83,10 @@ const QuotesGenerator: React.FC = () => {
 
         <IonCard>
 
-          {/*Button Grid*/}
+          {/*Button Trigger*/}
           <IonGrid>
             <IonRow>
                 <IonCol size="" push="">
-
                 <IonButton id="present-alert" color="warning" expand="full" onClick={handleOpenAlert}>Click me</IonButton> 
                 <IonAlert
                   isOpen={showAlert}
@@ -97,10 +96,7 @@ const QuotesGenerator: React.FC = () => {
                   message={renderRandomMessage()}
                   buttons={['Close']}
                 />
-
                 </IonCol>
-               
-              
             </IonRow>
           </IonGrid>
         </IonCard>  
