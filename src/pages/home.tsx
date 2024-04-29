@@ -22,45 +22,52 @@ import {
   IonTitle,
   IonToolbar,
   IonItemDivider,
-  IonSearchbar
+  IonSearchbar,
+  IonBadge
 } from '@ionic/react';
 
 //Custom CSS
 import './home.css';
 
 //Ionic Icons
-import { speedometerOutline,calculator,pencil, chatbubble, readerOutline, reader} from 'ionicons/icons';
+import { speedometerOutline,calculator,pencil, chatbubble, readerOutline, logoIonic,logoFirebase} from 'ionicons/icons';
 
 const cardData = [
   {
     title: 'Click Counter',
     icon: speedometerOutline,
     subtitle: 'Applet #1',
-    link: '/clickcounter'
+    link: '/clickcounter',
+    subicon: logoIonic
+
   },
   {
     title: 'Calculator',
     icon: calculator,
     subtitle: 'Applet #2',
-    link: '/calculator'
+    link: '/calculator',
+    subicon: logoIonic
   },
   {
     title: 'To Do List',
     icon: pencil,
     subtitle: 'Applet #3',
-    link: '/todolist'
+    link: '/todolist',
+    subicon: logoIonic
   },
   {
     title: 'Quotes Generator',
     icon: chatbubble,
     subtitle: 'Applet #4',
-    link: '/quotegenerator'
+    link: '/quotegenerator',
+    subicon: logoIonic
   },
   {
     title: 'Notes',
     icon: readerOutline,
-    subtitle: 'Applet #5',
-    link: '/notes'
+    subtitle: 'Applet #5 | Firebase driven applet',
+    link: '/notes',
+    subicon: logoFirebase
   }
   
 ];
@@ -98,14 +105,17 @@ const cardData = [
                   <IonCardTitle>
                     <IonGrid>
                       <IonRow>
-                        <IonCol push=".75">
+
+                        <IonCol size="2">
                           <IonIcon className="home-card-icon" icon={card.icon} color="primary" />
                         </IonCol>
-                        <IonCol pull='3'>
-                          <div className="home-card-title">{card.title}</div>
-                          <IonCardSubtitle>{card.subtitle}</IonCardSubtitle>
-                        </IonCol>
+                        <IonCol size="auto">
+                            <div className="home-card-title">{card.title}</div>
+                            <IonCardSubtitle>{card.subtitle}</IonCardSubtitle>
+                            <IonIcon className="home-card-subicon" icon={card.subicon} color="primary" />
+                          </IonCol>
                       </IonRow>
+                     
                     </IonGrid>
                   </IonCardTitle>
                 </IonCardHeader>
