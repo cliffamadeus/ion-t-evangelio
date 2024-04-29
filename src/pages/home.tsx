@@ -30,7 +30,7 @@ import {
 import './home.css';
 
 //Ionic Icons
-import { speedometerOutline,calculator,pencil, chatbubble, readerOutline, logoIonic,logoFirebase} from 'ionicons/icons';
+import { speedometerOutline,calculator,pencil, chatbubble, readerOutline, logoIonic,logoFirebase, logoReact} from 'ionicons/icons';
 
 const cardData = [
   {
@@ -39,7 +39,8 @@ const cardData = [
     subtitle: 'Applet #1',
     link: '/clickcounter',
     tags: {
-      tag1: logoIonic
+      tag1: logoIonic,
+      tag2: logoReact
     }
 
   },
@@ -49,7 +50,8 @@ const cardData = [
     subtitle: 'Applet #2',
     link: '/calculator',
     tags: {
-      tag1: logoIonic
+      tag1: logoIonic,
+      tag2: logoReact
     }
   },
   {
@@ -58,16 +60,18 @@ const cardData = [
     subtitle: 'Applet #3',
     link: '/todolist',
     tags: {
-      tag1: logoIonic
+      tag1: logoIonic,
+      tag2: logoReact
     }
   },
   {
-    title: 'Quotes Generator',
+    title: 'Quote Generator',
     icon: chatbubble,
     subtitle: 'Applet #4',
     link: '/quotegenerator',
     tags: {
-      tag1: logoIonic
+      tag1: logoIonic,
+      tag2: logoReact
     }
   },
   {
@@ -76,8 +80,9 @@ const cardData = [
     subtitle: 'Applet #5',
     link: '/notes',
     tags: {
-      tag1: logoIonic, 
-      tag2: logoFirebase 
+      tag1: logoIonic,
+      tag2: logoReact, 
+      tag3: logoFirebase 
     }
   }
   
