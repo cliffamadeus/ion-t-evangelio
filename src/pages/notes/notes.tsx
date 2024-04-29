@@ -31,7 +31,7 @@ import { trashOutline, pencilOutline } from 'ionicons/icons';
 import './notes.css';
 
 // Firebase
-import { collection, addDoc, onSnapshot, updateDoc, doc, deleteDoc } from 'firebase/firestore';
+import { collection, addDoc, onSnapshot,} from 'firebase/firestore';
 import { db } from './firebase';
 
 const Todolist: React.FC = () => {
