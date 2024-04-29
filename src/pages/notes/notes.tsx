@@ -22,7 +22,8 @@ import {
   IonTitle,
   IonToolbar,
   IonItemDivider,
-  IonTextarea
+  IonTextarea,
+  useIonToast
 } from '@ionic/react';
 //Ionicons
 import { trashOutline,pencilOutline} from 'ionicons/icons';
@@ -34,6 +35,16 @@ const Todolist: React.FC = () => {
   const [newTodo, setNewTodo] = useState<string>('');
   const [editIndex, setEditIndex] = useState<number | null>(null);
   const inputRef = useRef<HTMLIonTextareaElement>(null);
+  const [present] = useIonToast();
+
+  // Toast
+  const addNewTodoToast = (position: 'middle') => {
+    present({
+      message: 'Added new todo',
+      duration: 1500,
+      position: position,
+    });
+  };
 
   // Add a new to-do when the "Add" button is clicked
   const addTodo = () => {
@@ -43,10 +54,12 @@ const Todolist: React.FC = () => {
         newTodos[editIndex] = newTodo;
         setTodos(newTodos);
         setEditIndex(null);
+        
       } else {
         setTodos([...todos, newTodo]);
       }
       setNewTodo('');
+      addNewTodoToast('middle');
     }
   };
 
