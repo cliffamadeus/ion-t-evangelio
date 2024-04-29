@@ -31,7 +31,7 @@ import { trashOutline, pencilOutline } from 'ionicons/icons';
 import './notes.css';
 
 // Firebase
-import { collection, addDoc, onSnapshot,updateDoc,doc} from 'firebase/firestore';
+import { collection, addDoc, onSnapshot,updateDoc,doc, deleteDoc} from 'firebase/firestore';
 import { db } from './firebase';
 
 const Todolist: React.FC = () => {
@@ -74,6 +74,15 @@ const Todolist: React.FC = () => {
       position: position,
     });
   };
+
+  const deleteNoteToast = (position: 'middle') => {
+    present({
+      message: 'Note deleted',
+      duration: 1500,
+      position: position,
+    });
+  };
+
 
   //Create Note
   const addNote = async () => {
@@ -133,6 +142,13 @@ const updateNote = async () => {
 const cancelEdit = () => {
   clearInput(); // Clear input fields
   setEditIndex(null); // Reset editIndex
+};
+
+const deleteNote = async (index: number) => {
+  deleteNoteToast('middle');
+  const noteToDelete = notes[index];
+  // Delete note from Firestore
+  await deleteDoc(doc(db, 'notes', noteToDelete.id));
 };
 
   return (
@@ -214,7 +230,7 @@ const cancelEdit = () => {
                   <IonButton fill="clear" onClick={() => editNote(index)}>
                     <IonIcon icon={pencilOutline} />
                   </IonButton>
-                  <IonButton fill="clear">
+                  <IonButton fill="clear" onClick={() => deleteNote(index)}>
                     <IonIcon icon={trashOutline} />
                   </IonButton>
                 </IonItem>
