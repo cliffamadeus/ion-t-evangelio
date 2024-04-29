@@ -39,7 +39,7 @@ const Todolist: React.FC = () => {
   const [newTitle, setNewTitle] = useState<string>('');
   const [newDescription, setNewDescription] = useState<string>('');
   const [editIndex, setEditIndex] = useState<number | null>(null);
-  const inputRefTitle = useRef<HTMLIonTextareaElement>(null);
+  const inputRefTitle = useRef<HTMLIonInputElement>(null);
   const inputRefDescription = useRef<HTMLIonTextareaElement>(null);
   const [present] = useIonToast();
 
@@ -52,11 +52,7 @@ const Todolist: React.FC = () => {
     }
   };
 
-  useEffect(() => {
-    if (inputRefTitle.current && inputRefDescription.current) {
-      inputRefTitle.current.setFocus();
-    }
-  }, [editIndex]);
+  
 
   // Toast
   const addNoteToast = (position: 'middle') => {
@@ -82,7 +78,6 @@ const Todolist: React.FC = () => {
       position: position,
     });
   };
-
 
   //Create Note
   const addNote = async () => {
@@ -116,7 +111,7 @@ const Todolist: React.FC = () => {
     return () => unsubscribe();
   }, []);
 
-  // Function to handle editing a note
+// Edit Handler
 const editNote = (index: number) => {
   setEditIndex(index);
   const editedNote = notes[index];
@@ -124,7 +119,7 @@ const editNote = (index: number) => {
   setNewDescription(editedNote.description);
 };
 
-// Function to update a note in Firebase
+// Update Firebase Data
 const updateNote = async () => {
   if (editIndex !== null) {
     editNoteToast('middle');
@@ -139,11 +134,13 @@ const updateNote = async () => {
   }
 };
 
+//Cancel Edit function
 const cancelEdit = () => {
   clearInput(); // Clear input fields
   setEditIndex(null); // Reset editIndex
 };
 
+// Delete Firebase Data
 const deleteNote = async (index: number) => {
   deleteNoteToast('middle');
   const noteToDelete = notes[index];
@@ -162,41 +159,39 @@ const deleteNote = async (index: number) => {
         </IonToolbar>
       </IonHeader>
       <IonContent className="ion-padding">
-        
-        <IonGrid>
-          <IonRow>
-            <IonCol>
-
-             {/*Todo list output*/}
-             <IonList>
-             
+        <IonCard>
+          <IonCardHeader>
+            <IonCardTitle>
+              <IonInput
+                placeholder="Type something here"
+                label="Title"
+                id="custom-input"
+                labelPlacement="floating"
+                counter={true}
+                maxlength={50}
+                counterFormatter={(inputLength, maxLength) => `${maxLength - inputLength} / ${maxLength} characters remaining`}
+                value={newTitle}
+                onIonInput={(e) => setNewTitle(e.detail.value!)}
+                ref={inputRefTitle}
+              ></IonInput>
+            </IonCardTitle>
+            <IonCardSubtitle>
               <IonTextarea 
-                  placeholder="Type something here"
-                  label="Title"
-                  id="custom-input"
-                  labelPlacement="floating"
-                  counter={true}
-                  maxlength={50}
-                  counterFormatter={(inputLength, maxLength) => `${maxLength - inputLength} / ${maxLength} characters remaining`}
-                  value={newTitle}
-                  onIonInput={(e) => setNewTitle(e.detail.value!)}
-                  ref={inputRefTitle}
-                ></IonTextarea>
-         
-                <IonTextarea 
-                  placeholder="Type something here"
-                  label="Description"
-                  id="custom-input"
-                  labelPlacement="floating"
-                  counter={true}
-                  maxlength={200}
-                  counterFormatter={(inputLength, maxLength) => `${maxLength - inputLength} / ${maxLength} characters remaining`}
-                  value={newDescription}
-                  onIonInput={(e) => setNewDescription(e.detail.value!)}
-                  ref={inputRefDescription}
-                ></IonTextarea>
-                
-              <IonRow>
+                placeholder="Type something here"
+                label="Description"
+                id="custom-input"
+                labelPlacement="floating"
+                counter={true}
+                maxlength={200}
+                counterFormatter={(inputLength, maxLength) => `${maxLength - inputLength} / ${maxLength} characters remaining`}
+                value={newDescription}
+                onIonInput={(e) => setNewDescription(e.detail.value!)}
+                ref={inputRefDescription}
+              ></IonTextarea>
+            </IonCardSubtitle>
+          </IonCardHeader>
+          <IonCardContent>
+            <IonRow>
               <IonCol>
                 <IonButton expand="block" onClick={editIndex !== null ? updateNote : addNote}>
                   {editIndex !== null ? 'Update' : 'Add'}
@@ -207,39 +202,34 @@ const deleteNote = async (index: number) => {
                   {editIndex !== null ? 'Cancel' : 'Clear'}
                 </IonButton>
               </IonCol>
-
-              </IonRow>      
-            </IonList>
-
-           {/*Todo list output*/}
-              <br></br>
-              <IonItemDivider color="light">
-                <IonLabel>Notes</IonLabel>
-              </IonItemDivider>
-              <IonList>
-              {notes
-              .slice() // Create a shallow copy of the notes array to avoid mutating the original array
-              .sort((a, b) => new Date(a.dateAdded).getTime() - new Date(b.dateAdded).getTime()) // Sort the array by dateAdded
-              .map((note, index) => (
-                <IonItem key={index}>
-                  <IonLabel>
-                    <h2>{note.title}</h2>
-                    <p>{note.description}</p>
-                    <p>{new Date(note.dateAdded).toLocaleString()}</p>
-                  </IonLabel>
-                  <IonButton fill="clear" onClick={() => editNote(index)}>
-                    <IonIcon icon={pencilOutline} />
-                  </IonButton>
-                  <IonButton fill="clear" onClick={() => deleteNote(index)}>
-                    <IonIcon icon={trashOutline} />
-                  </IonButton>
-                </IonItem>
-              ))}
-              </IonList>
-
-            </IonCol>
-          </IonRow>
-        </IonGrid>
+            </IonRow>      
+          </IonCardContent>
+        </IonCard>
+        {/*Todo list output*/}
+        <br></br>
+        <IonItemDivider color="light">
+          <IonLabel>Notes</IonLabel>
+        </IonItemDivider>
+        <IonList>
+          {notes
+            .slice() // Create a shallow copy of the notes array to avoid mutating the original array
+            .sort((a, b) => new Date(a.dateAdded).getTime() - new Date(b.dateAdded).getTime()) // Sort the array by dateAdded
+            .map((note, index) => (
+            <IonItem key={index}>
+              <IonLabel>
+                <h2>{note.title}</h2>
+                <p>{note.description}</p>
+                <p>{new Date(note.dateAdded).toLocaleString()}</p>
+              </IonLabel>
+              <IonButton fill="clear" onClick={() => editNote(index)}>
+                <IonIcon icon={pencilOutline} />
+              </IonButton>
+              <IonButton fill="clear" onClick={() => deleteNote(index)}>
+                <IonIcon icon={trashOutline} />
+              </IonButton>
+            </IonItem>
+          ))}
+        </IonList> 
       </IonContent>
     </IonPage>
   );
