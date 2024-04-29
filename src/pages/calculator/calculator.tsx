@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import {
   IonBackButton,
   IonButton,
@@ -27,6 +28,28 @@ import ExploreContainer from '../../components/ExploreContainer';
 import './calculator.css';
 
 const Calculator: React.FC = () => {
+  const [inputValue, setInputValue] = useState<string>('');
+
+  // Function to handle button clicks
+  const handleButtonClick = (value: string) => {
+    setInputValue(prevValue => prevValue + value);
+  };
+
+  // Function to clear the input
+  const clearInput = () => {
+    setInputValue('');
+  };
+
+  // Function to perform calculation
+  const calculateResult = () => {
+    try {
+      const result = eval(inputValue); // Using eval() for simplicity, but be cautious with security implications
+      setInputValue(result.toString());
+    } catch (error) {
+      setInputValue('Error');
+    }
+  };
+
   return (
     <IonPage>
       <IonHeader>
@@ -38,30 +61,27 @@ const Calculator: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent className="ion-padding">
-        <img className="calculator-img-header" alt="Silhouette of mountains" src="https://mediaproxy.snopes.com/width/1200/height/900/https://media.snopes.com/2016/07/math.jpg" />
         <IonGrid>
           <IonRow>
             <IonCol>
-
             <IonItem>
               <IonInput className="ion-text-right" ></IonInput>
             </IonItem>
-
             <IonGrid fixed={true} className="calculator-grid">
-                  <IonRow className="calculator-row">
-                      <IonCol>
-                          <IonButton expand="full" className="calculator-button">C</IonButton>
-                      </IonCol>
-                      <IonCol>
-                          <IonButton expand="full" className="calculator-button">+/-</IonButton>
-                      </IonCol>
-                      <IonCol>
-                          <IonButton expand="full" className="calculator-button">%</IonButton>
-                      </IonCol>
-                      <IonCol>
-                          <IonButton expand="full" className="calculator-button">÷</IonButton>
-                      </IonCol>
-                  </IonRow>
+               <IonRow className="calculator-row">
+                  <IonCol>
+                    <IonButton expand="full" className="calculator-button" onClick={() => clearInput()}>C</IonButton>
+                  </IonCol>
+                  <IonCol>
+                    <IonButton expand="full" className="calculator-button" onClick={() => handleButtonClick('+/-')}>+/-</IonButton>
+                  </IonCol>
+                  <IonCol>
+                    <IonButton expand="full" className="calculator-button" onClick={() => handleButtonClick('%')}>%</IonButton>
+                  </IonCol>
+                  <IonCol>
+                    <IonButton expand="full" className="calculator-button" onClick={() => handleButtonClick('/')}>÷</IonButton>
+                  </IonCol>
+                </IonRow>
 
                   <IonRow  className="calculator-row">
                       <IonCol>
@@ -74,7 +94,7 @@ const Calculator: React.FC = () => {
                           <IonButton expand="full" className="calculator-button">9</IonButton>
                       </IonCol>
                       <IonCol>
-                          <IonButton expand="full" className="calculator-button">x</IonButton>
+                          <IonButton expand="full" className="calculator-button">*</IonButton>
                       </IonCol>
                   </IonRow>
 
@@ -94,6 +114,21 @@ const Calculator: React.FC = () => {
                   </IonRow>
 
                   <IonRow  className="calculator-row">
+                      <IonCol>
+                          <IonButton expand="full" className="calculator-button">1</IonButton>
+                      </IonCol>
+                      <IonCol>
+                          <IonButton expand="full" className="calculator-button">2</IonButton>
+                      </IonCol>
+                      <IonCol>
+                          <IonButton expand="full" className="calculator-button">3</IonButton>
+                      </IonCol>
+                      <IonCol>
+                          <IonButton expand="full" className="calculator-button">4</IonButton>
+                      </IonCol>
+                  </IonRow>
+
+                  <IonRow  className="calculator-row">
                       <IonCol size="6">
                           <IonButton expand="full" className="calculator-button">0</IonButton>
                       </IonCol>
@@ -105,7 +140,6 @@ const Calculator: React.FC = () => {
                       </IonCol>
                   </IonRow>
             </IonGrid>
-
             </IonCol>
           </IonRow>
         </IonGrid>
