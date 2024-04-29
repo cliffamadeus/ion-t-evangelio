@@ -30,6 +30,10 @@ import { trashOutline,pencilOutline} from 'ionicons/icons';
 
 import './notes.css';
 
+// Firebase
+import { collection, addDoc, onSnapshot, updateDoc, doc, deleteDoc } from 'firebase/firestore';
+import { db } from './firebase';
+
 const Todolist: React.FC = () => {
   const [todos, setTodos] = useState<string[]>([]);
   const [newTodo, setNewTodo] = useState<string>('');
