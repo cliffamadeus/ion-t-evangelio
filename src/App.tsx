@@ -18,6 +18,7 @@ import ClickCounter from './pages/clickcounter/clickcounter';
 import Calculator from './pages/calculator/calculator';
 import Todolist from './pages/todolist/todolist';
 import QuoteGenerator from './pages/quotegenerator/quotegenerator';
+import Notes from './pages/notes/notes';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -71,6 +72,10 @@ const App: React.FC = () => (
 
           <Route path="/quotegenerator">
             <QuoteGenerator />
+          </Route>
+
+          <Route path="/notes">
+            <Notes />
           </Route>
 
         </IonRouterOutlet>

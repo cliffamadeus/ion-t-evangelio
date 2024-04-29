@@ -29,10 +29,7 @@ import {
 import './home.css';
 
 //Ionic Icons
-import { speedometerOutline,calculator,pencil, chatbubble} from 'ionicons/icons';
-
-//Additional Routes
-import ClickCounter from './clickcounter/clickcounter';
+import { speedometerOutline,calculator,pencil, chatbubble, readerOutline, reader} from 'ionicons/icons';
 
 const cardData = [
   {
@@ -58,6 +55,12 @@ const cardData = [
     icon: chatbubble,
     subtitle: 'Applet #4',
     link: '/quotegenerator'
+  },
+  {
+    title: 'Notes',
+    icon: readerOutline,
+    subtitle: 'Applet #5',
+    link: '/notes'
   }
   
 ];
