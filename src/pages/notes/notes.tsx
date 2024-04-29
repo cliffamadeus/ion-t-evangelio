@@ -35,11 +35,19 @@ import { collection, addDoc, onSnapshot, updateDoc, doc, deleteDoc } from 'fireb
 import { db } from './firebase';
 
 const Todolist: React.FC = () => {
-  const [todos, setTodos] = useState<string[]>([]);
-  const [newTodo, setNewTodo] = useState<string>('');
+  const [notes, setNotes] = useState<string[]>([]);
+  const [newNote, setNewNote] = useState<string>('');
   const [editIndex, setEditIndex] = useState<number | null>(null);
   const inputRef = useRef<HTMLIonTextareaElement>(null);
   const [present] = useIonToast();
+
+  // Clear the input field
+  const clearInput = () => {
+    setNewNote('');
+    if (inputRef.current) {
+      inputRef.current.setFocus();
+    }
+  };
 
   // Toast
   const addNewTodoToast = (position: 'middle') => {
@@ -50,40 +58,41 @@ const Todolist: React.FC = () => {
     });
   };
 
+  //Load Firebase Data
+  useEffect(() => {
+    const unsubscribe = onSnapshot(collection(db, 'todos'), (snapshot) => {
+      setNotes(snapshot.docs.map(doc => 
+      doc.data().description
+      ));
+    });
+    return () => unsubscribe();
+  }, []);
+
   // Add a new to-do when the "Add" button is clicked
-  const addTodo = () => {
-    if (newTodo.trim() !== '') {
+  const addNote = () => {
+    if (newNote.trim() !== '') {
       if (editIndex !== null) {
-        const newTodos = [...todos];
-        newTodos[editIndex] = newTodo;
-        setTodos(newTodos);
+        const newTodos = [...notes];
+        newTodos[editIndex] = newNote;
+        setNotes(newTodos);
         setEditIndex(null);
         
       } else {
-        setTodos([...todos, newTodo]);
+        setNotes([...notes, newNote]);
       }
-      setNewTodo('');
+      setNewNote('');
       addNewTodoToast('middle');
-    }
-  };
-
-  
-  // Clear the input field
-  const clearInput = () => {
-    setNewTodo('');
-    if (inputRef.current) {
-      inputRef.current.setFocus();
     }
   };
 
   // Remove a to-do when the delete button is clicked
   const removeTodo = (index: number) => {
-    setTodos(todos.filter((_, i) => i !== index));
+    setNotes(notes.filter((_, i) => i !== index));
   };
 
   // Set the input field for editing when a todo item is clicked
   const editTodo = (index: number) => {
-    setNewTodo(todos[index]);
+    setNewNote(notes[index]);
     setEditIndex(index);
     if (inputRef.current) {
       inputRef.current.setFocus();
@@ -121,14 +130,14 @@ const Todolist: React.FC = () => {
                 counter={true}
                 maxlength={200}
                 counterFormatter={(inputLength, maxLength) => `${maxLength - inputLength} / ${maxLength} characters remaining`}
-                value={newTodo}
-                onIonInput={(e) => setNewTodo(e.detail.value!)}
+                value={newNote}
+                onIonInput={(e) => setNewNote(e.detail.value!)}
                 ref={inputRef}
               ></IonTextarea>
 
               <IonRow>
                   <IonCol>
-                  <IonButton expand="block" onClick={addTodo} > {editIndex !== null ? 'Update' : 'Add'}</IonButton>
+                  <IonButton expand="block" onClick={addNote} > {editIndex !== null ? 'Update' : 'Add'}</IonButton>
                   </IonCol>
                   <IonCol> 
                   <IonButton  expand="block"fill="clear"  onClick={clearInput} >Clear</IonButton>
@@ -141,15 +150,15 @@ const Todolist: React.FC = () => {
                 <IonLabel>Notes</IonLabel>
               </IonItemDivider>
               <IonList>
-                    {todos.map((todo, index) => (
+                    {notes.map((description, index) => (
                       <IonItem className="notesresult" key={index}>
                         <IonInput
                           disabled={editIndex !== index}
-                          value={todo}
-                          onIonChange={(e) => setNewTodo(e.detail.value!)}
+                          value={description}
+                          onIonChange={(e) => setNewNote(e.detail.value!)}
                         ></IonInput>
                         {editIndex === index ? (
-                          <IonButton onClick={() => addTodo()}>
+                          <IonButton onClick={() => addNote()}>
                             Done
                           </IonButton>
                         ) : (
