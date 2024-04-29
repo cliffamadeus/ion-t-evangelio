@@ -8,9 +8,11 @@ export default defineConfig({
     react(),
     legacy()
   ],
+  base: './',
   test: {
     globals: true,
     environment: 'jsdom',
     setupFiles: './src/setupTests.ts',
   }
 })
+
