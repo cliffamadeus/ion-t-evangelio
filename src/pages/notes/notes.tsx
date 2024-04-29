@@ -35,7 +35,7 @@ import { collection, addDoc, onSnapshot, updateDoc, doc, deleteDoc } from 'fireb
 import { db } from './firebase';
 
 const Todolist: React.FC = () => {
-  const [notes, setNotes] = useState<{ title: string; description: string; }[]>([]);
+  const [notes, setNotes] = useState<{ title: string; description: string;dateAdded: string; }[]>([]);
   const [newTitle, setNewTitle] = useState<string>('');
   const [newDescription, setNewDescription] = useState<string>('');
   const [editIndex, setEditIndex] = useState<number | null>(null);
@@ -73,6 +73,7 @@ const Todolist: React.FC = () => {
       setNotes(snapshot.docs.map(doc => ({
         description: doc.data().description,
         title: doc.data().title,
+        dateAdded: doc.data().dateAdded
       })));
     });
     return () => unsubscribe();
@@ -84,10 +85,12 @@ const Todolist: React.FC = () => {
       if (editIndex !== null) {
         // Update existing note (not implemented in this code snippet)
       } else {
+        const currentDate = new Date().toISOString(); 
         addNewTodoToast('middle');
         await addDoc(collection(db, 'notes'), {
           title: newTitle,
-          description: newDescription
+          description: newDescription,
+          dateAdded: currentDate
         });
         
       }
@@ -161,6 +164,7 @@ const Todolist: React.FC = () => {
                       <IonLabel>
                         <h2>{note.title}</h2>
                         <p>{note.description}</p>
+                        <p>{new Date(note.dateAdded).toLocaleString()}</p>
                       </IonLabel>
                       <IonButton fill="clear">
                         <IonIcon icon={pencilOutline} />
