@@ -31,11 +31,11 @@ import { trashOutline, pencilOutline } from 'ionicons/icons';
 import './notes.css';
 
 // Firebase
-import { collection, addDoc, onSnapshot,} from 'firebase/firestore';
+import { collection, addDoc, onSnapshot,updateDoc,doc} from 'firebase/firestore';
 import { db } from './firebase';
 
 const Todolist: React.FC = () => {
-  const [notes, setNotes] = useState<{ title: string; description: string;dateAdded: string; }[]>([]);
+  const [notes, setNotes] = useState<{ id: string; title: string; description: string;dateAdded: string; }[]>([]);
   const [newTitle, setNewTitle] = useState<string>('');
   const [newDescription, setNewDescription] = useState<string>('');
   const [editIndex, setEditIndex] = useState<number | null>(null);
@@ -59,34 +59,30 @@ const Todolist: React.FC = () => {
   }, [editIndex]);
 
   // Toast
-  const addNewTodoToast = (position: 'middle') => {
+  const addNoteToast = (position: 'middle') => {
     present({
       message: 'Added new Note',
-      duration: 500,
+      duration: 1500,
       position: position,
     });
   };
 
-  //Load Firebase Data
-  useEffect(() => {
-    const unsubscribe = onSnapshot(collection(db, 'notes'), (snapshot) => {
-      setNotes(snapshot.docs.map(doc => ({
-        description: doc.data().description,
-        title: doc.data().title,
-        dateAdded: doc.data().dateAdded
-      })));
+  const editNoteToast = (position: 'middle') => {
+    present({
+      message: 'Changes Saved',
+      duration: 1500,
+      position: position,
     });
-    return () => unsubscribe();
-  }, []);
+  };
 
-  // Add a new to-do when the "Add" button is clicked
+  //Create Note
   const addNote = async () => {
     if (newTitle.trim() !== '') {
       if (editIndex !== null) {
         // Update existing note (not implemented in this code snippet)
       } else {
         const currentDate = new Date().toISOString(); 
-        addNewTodoToast('middle');
+        addNoteToast('middle');
         await addDoc(collection(db, 'notes'), {
           title: newTitle,
           description: newDescription,
@@ -97,6 +93,47 @@ const Todolist: React.FC = () => {
       clearInput();
     }
   };
+
+  //Read Firebase Data
+  useEffect(() => {
+    const unsubscribe = onSnapshot(collection(db, 'notes'), (snapshot) => {
+      setNotes(snapshot.docs.map(doc => ({
+        id: doc.id, // Include the id property
+        description: doc.data().description,
+        title: doc.data().title,
+        dateAdded: doc.data().dateAdded
+      })));
+    });
+    return () => unsubscribe();
+  }, []);
+
+  // Function to handle editing a note
+const editNote = (index: number) => {
+  setEditIndex(index);
+  const editedNote = notes[index];
+  setNewTitle(editedNote.title);
+  setNewDescription(editedNote.description);
+};
+
+// Function to update a note in Firebase
+const updateNote = async () => {
+  if (editIndex !== null) {
+    editNoteToast('middle');
+    const noteToUpdate = notes[editIndex];
+    await updateDoc(doc(db, 'notes', noteToUpdate.id), {
+      title: newTitle,
+      description: newDescription,
+    });
+    // Clear the input fields and reset editIndex
+    clearInput();
+    setEditIndex(null);
+  }
+};
+
+const cancelEdit = () => {
+  clearInput(); // Clear input fields
+  setEditIndex(null); // Reset editIndex
+};
 
   return (
     <IonPage>
@@ -144,12 +181,17 @@ const Todolist: React.FC = () => {
                 ></IonTextarea>
                 
               <IonRow>
-                  <IonCol>
-                  <IonButton expand="block" onClick={addNote} > {editIndex !== null ? 'Update' : 'Add'}</IonButton>
-                  </IonCol>
-                  <IonCol> 
-                  <IonButton  expand="block"fill="clear"  onClick={clearInput} >Clear</IonButton>
-                  </IonCol>      
+              <IonCol>
+                <IonButton expand="block" onClick={editIndex !== null ? updateNote : addNote}>
+                  {editIndex !== null ? 'Update' : 'Add'}
+                </IonButton>
+              </IonCol>
+              <IonCol> 
+                <IonButton expand="block" fill="clear" onClick={editIndex !== null ? cancelEdit : clearInput}>
+                  {editIndex !== null ? 'Cancel' : 'Clear'}
+                </IonButton>
+              </IonCol>
+
               </IonRow>      
             </IonList>
 
@@ -159,21 +201,24 @@ const Todolist: React.FC = () => {
                 <IonLabel>Notes</IonLabel>
               </IonItemDivider>
               <IonList>
-                  {notes.map((note, index) => (
-                    <IonItem key={index}>
-                      <IonLabel>
-                        <h2>{note.title}</h2>
-                        <p>{note.description}</p>
-                        <p>{new Date(note.dateAdded).toLocaleString()}</p>
-                      </IonLabel>
-                      <IonButton fill="clear">
-                        <IonIcon icon={pencilOutline} />
-                      </IonButton>
-                      <IonButton fill="clear">
-                        <IonIcon icon={trashOutline} />
-                      </IonButton>
-                    </IonItem>
-                  ))}
+              {notes
+              .slice() // Create a shallow copy of the notes array to avoid mutating the original array
+              .sort((a, b) => new Date(a.dateAdded).getTime() - new Date(b.dateAdded).getTime()) // Sort the array by dateAdded
+              .map((note, index) => (
+                <IonItem key={index}>
+                  <IonLabel>
+                    <h2>{note.title}</h2>
+                    <p>{note.description}</p>
+                    <p>{new Date(note.dateAdded).toLocaleString()}</p>
+                  </IonLabel>
+                  <IonButton fill="clear" onClick={() => editNote(index)}>
+                    <IonIcon icon={pencilOutline} />
+                  </IonButton>
+                  <IonButton fill="clear">
+                    <IonIcon icon={trashOutline} />
+                  </IonButton>
+                </IonItem>
+              ))}
               </IonList>
 
             </IonCol>
