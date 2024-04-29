@@ -38,7 +38,9 @@ const cardData = [
     icon: speedometerOutline,
     subtitle: 'Applet #1',
     link: '/clickcounter',
-    subicon: logoIonic
+    tags: {
+      tag1: logoIonic
+    }
 
   },
   {
@@ -46,37 +48,45 @@ const cardData = [
     icon: calculator,
     subtitle: 'Applet #2',
     link: '/calculator',
-    subicon: logoIonic
+    tags: {
+      tag1: logoIonic
+    }
   },
   {
     title: 'To Do List',
     icon: pencil,
     subtitle: 'Applet #3',
     link: '/todolist',
-    subicon: logoIonic
+    tags: {
+      tag1: logoIonic
+    }
   },
   {
     title: 'Quotes Generator',
     icon: chatbubble,
     subtitle: 'Applet #4',
     link: '/quotegenerator',
-    subicon: logoIonic
+    tags: {
+      tag1: logoIonic
+    }
   },
   {
     title: 'Notes',
     icon: readerOutline,
-    subtitle: 'Applet #5 | Firebase driven applet',
+    subtitle: 'Applet #5',
     link: '/notes',
-    subicon: logoFirebase
+    tags: {
+      tag1: logoIonic, 
+      tag2: logoFirebase 
+    }
   }
   
 ];
 
-  const Home: React.FC = () => {
-
-    {/*Dynamic Search*/}
-    const [searchTerm, setSearchTerm] = useState<string>('');
-
+const Home: React.FC = () => {
+  {/*Dynamic Search*/}
+  const [searchTerm, setSearchTerm] = useState<string>('');
+  
     return (
       <IonPage>
         <IonHeader>
@@ -90,8 +100,8 @@ const cardData = [
               <IonTitle size="large">Home</IonTitle>
             </IonToolbar>
           </IonHeader>
-        {/*Dynamic Search*/}
-        <>
+          
+          {/*Dynamic Search*/}
           <IonSearchbar 
             value={searchTerm} 
             onIonInput={(e) => setSearchTerm(e.target.value ?? '')} 
@@ -105,28 +115,31 @@ const cardData = [
                   <IonCardTitle>
                     <IonGrid>
                       <IonRow>
-
                         <IonCol size="2">
                           <IonIcon className="home-card-icon" icon={card.icon} color="primary" />
                         </IonCol>
                         <IonCol size="auto">
                             <div className="home-card-title">{card.title}</div>
                             <IonCardSubtitle>{card.subtitle}</IonCardSubtitle>
-                            <IonIcon className="home-card-subicon" icon={card.subicon} color="primary" />
+                            {card.tags && Object.entries(card.tags).map(([key, icon], i) => (
+                              <IonIcon
+                                key={i}
+                                className="home-card-subicon"
+                                icon={icon}
+                                color="primary" // Set color as needed
+                              />
+                            ))}
                           </IonCol>
                       </IonRow>
-                     
                     </IonGrid>
                   </IonCardTitle>
                 </IonCardHeader>
               </IonCard>
           ))}
-        </>
-          </IonContent>
-        </IonPage>
+        </IonContent>
+      </IonPage>
     );
-  };
+};
   
-  //
-  export default Home;
+export default Home;
   
