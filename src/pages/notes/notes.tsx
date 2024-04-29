@@ -35,7 +35,7 @@ import { collection, addDoc, onSnapshot,updateDoc,doc, deleteDoc} from 'firebase
 import { db } from './firebase';
 
 const Todolist: React.FC = () => {
-  const [notes, setNotes] = useState<{ id: string; title: string; description: string;dateAdded: string; }[]>([]);
+  const [notes, readNotes] = useState<{ id: string; title: string; description: string;dateAdded: string; }[]>([]);
   const [newTitle, setNewTitle] = useState<string>('');
   const [newDescription, setNewDescription] = useState<string>('');
   const [editIndex, setEditIndex] = useState<number | null>(null);
@@ -51,8 +51,6 @@ const Todolist: React.FC = () => {
       inputRefTitle.current.setFocus();
     }
   };
-
-  
 
   // Toast
   const addNoteToast = (position: 'middle') => {
@@ -101,7 +99,7 @@ const Todolist: React.FC = () => {
   //Read Firebase Data
   useEffect(() => {
     const unsubscribe = onSnapshot(collection(db, 'notes'), (snapshot) => {
-      setNotes(snapshot.docs.map(doc => ({
+      readNotes(snapshot.docs.map(doc => ({
         id: doc.id, // Include the id property
         description: doc.data().description,
         title: doc.data().title,
