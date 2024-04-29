@@ -26,7 +26,7 @@ import {
   useIonToast
 } from '@ionic/react';
 //Ionicons
-import { trashOutline,pencilOutline} from 'ionicons/icons';
+import { trashOutline, pencilOutline } from 'ionicons/icons';
 
 import './notes.css';
 
@@ -35,76 +35,65 @@ import { collection, addDoc, onSnapshot, updateDoc, doc, deleteDoc } from 'fireb
 import { db } from './firebase';
 
 const Todolist: React.FC = () => {
-  const [notes, setNotes] = useState<string[]>([]);
-  const [newNote, setNewNote] = useState<string>('');
+  const [notes, setNotes] = useState<{ title: string; description: string; }[]>([]);
+  const [newTitle, setNewTitle] = useState<string>('');
+  const [newDescription, setNewDescription] = useState<string>('');
   const [editIndex, setEditIndex] = useState<number | null>(null);
-  const inputRef = useRef<HTMLIonTextareaElement>(null);
+  const inputRefTitle = useRef<HTMLIonTextareaElement>(null);
+  const inputRefDescription = useRef<HTMLIonTextareaElement>(null);
   const [present] = useIonToast();
 
   // Clear the input field
   const clearInput = () => {
-    setNewNote('');
-    if (inputRef.current) {
-      inputRef.current.setFocus();
+    setNewTitle('');
+    setNewDescription('');
+    if (inputRefTitle.current && inputRefDescription.current) {
+      inputRefTitle.current.setFocus();
     }
   };
+
+  useEffect(() => {
+    if (inputRefTitle.current && inputRefDescription.current) {
+      inputRefTitle.current.setFocus();
+    }
+  }, [editIndex]);
 
   // Toast
   const addNewTodoToast = (position: 'middle') => {
     present({
-      message: 'Added new todo',
-      duration: 1500,
+      message: 'Added new Note',
+      duration: 500,
       position: position,
     });
   };
 
   //Load Firebase Data
   useEffect(() => {
-    const unsubscribe = onSnapshot(collection(db, 'todos'), (snapshot) => {
-      setNotes(snapshot.docs.map(doc => 
-      doc.data().description
-      ));
+    const unsubscribe = onSnapshot(collection(db, 'notes'), (snapshot) => {
+      setNotes(snapshot.docs.map(doc => ({
+        description: doc.data().description,
+        title: doc.data().title,
+      })));
     });
     return () => unsubscribe();
   }, []);
 
   // Add a new to-do when the "Add" button is clicked
-  const addNote = () => {
-    if (newNote.trim() !== '') {
+  const addNote = async () => {
+    if (newTitle.trim() !== '') {
       if (editIndex !== null) {
-        const newTodos = [...notes];
-        newTodos[editIndex] = newNote;
-        setNotes(newTodos);
-        setEditIndex(null);
-        
+        // Update existing note (not implemented in this code snippet)
       } else {
-        setNotes([...notes, newNote]);
+        addNewTodoToast('middle');
+        await addDoc(collection(db, 'notes'), {
+          title: newTitle,
+          description: newDescription
+        });
+        
       }
-      setNewNote('');
-      addNewTodoToast('middle');
+      clearInput();
     }
   };
-
-  // Remove a to-do when the delete button is clicked
-  const removeTodo = (index: number) => {
-    setNotes(notes.filter((_, i) => i !== index));
-  };
-
-  // Set the input field for editing when a todo item is clicked
-  const editTodo = (index: number) => {
-    setNewNote(notes[index]);
-    setEditIndex(index);
-    if (inputRef.current) {
-      inputRef.current.setFocus();
-    }
-  };
-
-  // Focus on the new to-do input when the component mounts or after editing
-  useEffect(() => {
-    if (inputRef.current) {
-      inputRef.current.focus();
-    }
-  }, [editIndex]);
 
   return (
     <IonPage>
@@ -123,18 +112,34 @@ const Todolist: React.FC = () => {
             <IonCol>
 
              {/*Todo list output*/}
+             <IonList>
+             
               <IonTextarea 
-                placeholder="Type something here"
-                id="custom-input"
-                labelPlacement="floating"
-                counter={true}
-                maxlength={200}
-                counterFormatter={(inputLength, maxLength) => `${maxLength - inputLength} / ${maxLength} characters remaining`}
-                value={newNote}
-                onIonInput={(e) => setNewNote(e.detail.value!)}
-                ref={inputRef}
-              ></IonTextarea>
-
+                  placeholder="Type something here"
+                  label="Title"
+                  id="custom-input"
+                  labelPlacement="floating"
+                  counter={true}
+                  maxlength={50}
+                  counterFormatter={(inputLength, maxLength) => `${maxLength - inputLength} / ${maxLength} characters remaining`}
+                  value={newTitle}
+                  onIonInput={(e) => setNewTitle(e.detail.value!)}
+                  ref={inputRefTitle}
+                ></IonTextarea>
+         
+                <IonTextarea 
+                  placeholder="Type something here"
+                  label="Description"
+                  id="custom-input"
+                  labelPlacement="floating"
+                  counter={true}
+                  maxlength={200}
+                  counterFormatter={(inputLength, maxLength) => `${maxLength - inputLength} / ${maxLength} characters remaining`}
+                  value={newDescription}
+                  onIonInput={(e) => setNewDescription(e.detail.value!)}
+                  ref={inputRefDescription}
+                ></IonTextarea>
+                
               <IonRow>
                   <IonCol>
                   <IonButton expand="block" onClick={addNote} > {editIndex !== null ? 'Update' : 'Add'}</IonButton>
@@ -142,39 +147,31 @@ const Todolist: React.FC = () => {
                   <IonCol> 
                   <IonButton  expand="block"fill="clear"  onClick={clearInput} >Clear</IonButton>
                   </IonCol>      
-              </IonRow>    
+              </IonRow>      
+            </IonList>
 
-              {/*Todo list output*/}
+           {/*Todo list output*/}
               <br></br>
               <IonItemDivider color="light">
                 <IonLabel>Notes</IonLabel>
               </IonItemDivider>
               <IonList>
-                    {notes.map((description, index) => (
-                      <IonItem className="notesresult" key={index}>
-                        <IonInput
-                          disabled={editIndex !== index}
-                          value={description}
-                          onIonChange={(e) => setNewNote(e.detail.value!)}
-                        ></IonInput>
-                        {editIndex === index ? (
-                          <IonButton onClick={() => addNote()}>
-                            Done
-                          </IonButton>
-                        ) : (
-                          <>
-                            <IonButton onClick={() => editTodo(index)}>
-                              <IonIcon icon={pencilOutline} />
-                            </IonButton>
-                            <IonButton onClick={() => removeTodo(index)}>
-                              <IonIcon icon={trashOutline} />
-                            </IonButton>
-                          </>
-                        )}
-                      </IonItem>
-                    ))}
+                  {notes.map((note, index) => (
+                    <IonItem key={index}>
+                      <IonLabel>
+                        <h2>{note.title}</h2>
+                        <p>{note.description}</p>
+                      </IonLabel>
+                      <IonButton fill="clear">
+                        <IonIcon icon={pencilOutline} />
+                      </IonButton>
+                      <IonButton fill="clear">
+                        <IonIcon icon={trashOutline} />
+                      </IonButton>
+                    </IonItem>
+                  ))}
               </IonList>
-            
+
             </IonCol>
           </IonRow>
         </IonGrid>
