@@ -59,22 +59,22 @@ const App: React.FC = () => (
           <Route exact path="/ion-t-evangelio/profile">
             <Profile />
           </Route>
-          <Route exact path="/clickcounter">
+          <Route exact path="/ion-t-evangelio/clickcounter">
             <ClickCounter />
           </Route>
-          <Route path="/calculator">
+          <Route path="/ion-t-evangelio/calculator">
             <Calculator />
           </Route>
 
-          <Route path="/todolist">
+          <Route path="/ion-t-evangelio/todolist">
             <Todolist />
           </Route>
 
-          <Route path="/quotegenerator">
+          <Route path="/ion-t-evangelio/quotegenerator">
             <QuoteGenerator />
           </Route>
 
-          <Route path="/notes">
+          <Route path="/ion-t-evangelio/notes">
             <Notes />
           </Route>
 

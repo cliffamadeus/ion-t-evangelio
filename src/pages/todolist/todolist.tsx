@@ -83,7 +83,7 @@ const Todolist: React.FC = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonButton slot="start" fill="clear" href='/'>
+          <IonButton slot="start" fill="clear"  href="/ion-t-evangelio/home">
             Back
           </IonButton>
           <IonTitle>To Do List</IonTitle>

@@ -28,7 +28,7 @@ const ClickCounter: React.FC = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-           <IonButton slot="start"  fill="clear"  href="/home">
+           <IonButton slot="start"  fill="clear"  href="/ion-t-evangelio/home">
             Back
           </IonButton>
           <IonTitle>Click Counter</IonTitle>
