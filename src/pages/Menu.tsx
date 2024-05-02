@@ -3,6 +3,7 @@ import { IonButton, IonContent, IonHeader, IonItem, IonMenu, IonMenuToggle, IonP
 import { homeOutline, newspaperOutline, logOutOutline } from 'ionicons/icons';
 import { Redirect, Route } from 'react-router-dom';
 import Home1 from './Home1';
+import Clickcounter from './clickcounter/clickcounter';
 
 
 const Menu: React.FC = () => {
@@ -45,8 +46,8 @@ const Menu: React.FC = () => {
       <IonRouterOutlet id="main">
         
         <Route exact path="/ion-t-evangelio/app/home" component={Home1} />
-         {/*<Route exact path="/app/page1" component={Page1} />
-        <Route exact path="/app/page1/details" component={Details} />
+        <Route exact path="/ion-t-evangelio/app/clickcounter" component={Clickcounter} />
+         {/*<Route exact path="/app/page1/details" component={Details} />
         <Route exact path="/app/page2" component={Page2} />*/}
         <Route exact path="/ion-t-evangelio/app">
           <Redirect to="/ion-t-evangelio/app/home" />

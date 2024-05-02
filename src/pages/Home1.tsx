@@ -18,11 +18,10 @@ const Home: React.FC = () => {
             <IonTitle size="large">Home</IonTitle>
           </IonToolbar>
         </IonHeader>
-
-        <IonButton routerLink="/app/page1/details" expand="full">
-          Details
+        
+        <IonButton routerLink="/ion-t-evangelio/app/clickcounter" expand="full">
+          Click Counter
         </IonButton>
-    
     
       </IonContent>
     </IonPage>
