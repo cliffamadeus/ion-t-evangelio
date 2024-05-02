@@ -69,9 +69,9 @@ const QuoteGenerator: React.FC = () => {
       <IonContent className='ion-padding'>
       <IonHeader>
         <IonToolbar>
-          <IonButton slot="start" fill="clear"  href="/ion-t-evangelio/home">
-            Back
-          </IonButton>
+           <IonButtons slot='start'>
+              <IonBackButton defaultHref='/app/home'/>
+           </IonButtons>
           <IonTitle>Quote Generator</IonTitle>
         </IonToolbar>
       </IonHeader>
