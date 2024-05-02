@@ -66,18 +66,15 @@ const QuoteGenerator: React.FC = () => {
   
   return (
     <IonPage>
+      <IonContent className='ion-padding'>
       <IonHeader>
         <IonToolbar>
+           <IonButtons slot='start'>
+              <IonBackButton defaultHref='/app/home'/>
+           </IonButtons>
           <IonTitle>Quote Generator</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent className='ion-padding'>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Quote Generator</IonTitle>
-          </IonToolbar>
-        </IonHeader>
-
         <img alt="Silhouette of mountains" src="https://pbs.twimg.com/media/F6SEuqhW0AAJxD5.jpg" />
           {/*Button Trigger*/}
           <IonGrid>

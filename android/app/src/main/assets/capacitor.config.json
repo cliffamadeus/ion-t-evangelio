@@ -1,0 +1,8 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "ion-t-evangelio",
+	"webDir": "dist",
+	"server": {
+		"androidScheme": "https"
+	}
+}

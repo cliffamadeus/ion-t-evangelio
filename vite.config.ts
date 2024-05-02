@@ -4,7 +4,7 @@ import { defineConfig } from 'vite'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: './',
+  base: 'ion-t-evangelio/',
   plugins: [
     react(),
     legacy()

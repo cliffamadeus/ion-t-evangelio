@@ -37,7 +37,7 @@ const cardData = [
     title: 'Click Counter',
     icon: speedometerOutline,
     subtitle: 'Applet #1',
-    link: '/clickcounter',
+    link: '/ion-t-evangelio/home/clickcounter',
     tags: {
       tag1: logoIonic,
       tag2: logoReact
@@ -48,7 +48,7 @@ const cardData = [
     title: 'Calculator',
     icon: calculator,
     subtitle: 'Applet #2',
-    link: '/calculator',
+    link: '/ion-t-evangelio/home/calculator',
     tags: {
       tag1: logoIonic,
       tag2: logoReact
@@ -58,7 +58,7 @@ const cardData = [
     title: 'To Do List',
     icon: pencil,
     subtitle: 'Applet #3',
-    link: '/todolist',
+    link: '/ion-t-evangelio/home/todolist',
     tags: {
       tag1: logoIonic,
       tag2: logoReact
@@ -68,7 +68,7 @@ const cardData = [
     title: 'Quote Generator',
     icon: chatbubble,
     subtitle: 'Applet #4',
-    link: '/quotegenerator',
+    link: '/ion-t-evangelio/home/quotegenerator',
     tags: {
       tag1: logoIonic,
       tag2: logoReact
@@ -78,7 +78,7 @@ const cardData = [
     title: 'Notes',
     icon: readerOutline,
     subtitle: 'Applet #5',
-    link: '/notes',
+    link: '/ion-t-evangelio/home/notes',
     tags: {
       tag1: logoIonic,
       tag2: logoReact, 
@@ -115,7 +115,7 @@ const Home: React.FC = () => {
           {cardData
             .filter((card) => card.title.toLowerCase().includes(searchTerm.toLowerCase()))
             .map((card, index) => (
-              <IonCard key={index} href={card.link}>
+              <IonCard key={index} routerLink={card.link} routerDirection='forward'>
                 <IonCardHeader>
                   <IonCardTitle>
                     <IonGrid>
