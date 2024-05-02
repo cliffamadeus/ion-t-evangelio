@@ -4,6 +4,10 @@ import { homeOutline, newspaperOutline, logOutOutline } from 'ionicons/icons';
 import { Redirect, Route } from 'react-router-dom';
 import Home1 from './Home1';
 import Clickcounter from './clickcounter/clickcounter';
+import Calculator from './calculator/calculator';
+import Todolist from './todolist/todolist';
+import Quotegenerator from './quotegenerator/quotegenerator';
+import Notes from './notes/notes';
 
 
 const Menu: React.FC = () => {
@@ -41,13 +45,16 @@ const Menu: React.FC = () => {
         </IonContent>
       </IonMenu>
 
-
       {/* Routers */}
       <IonRouterOutlet id="main">
         
         <Route exact path="/ion-t-evangelio/app/home" component={Home1} />
         <Route exact path="/ion-t-evangelio/app/clickcounter" component={Clickcounter} />
-         {/*<Route exact path="/app/page1/details" component={Details} />
+        <Route exact path="/ion-t-evangelio/app/calculator" component={Calculator} />
+        <Route exact path="/ion-t-evangelio/app/todolist" component={Todolist} />
+        <Route exact path="/ion-t-evangelio/app/quotegenerator" component={Quotegenerator} />
+        <Route exact path="/ion-t-evangelio/app/notes" component={Notes} />
+        {/*<Route exact path="/app/page1/details" component={Details} />
         <Route exact path="/app/page2" component={Page2} />*/}
         <Route exact path="/ion-t-evangelio/app">
           <Redirect to="/ion-t-evangelio/app/home" />
