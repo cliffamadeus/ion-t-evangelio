@@ -56,7 +56,7 @@ const App: React.FC = () => (
             <Home />
           </Route>
 
-          <Route exact path="/ion-t-evangelio/home/profile">
+          <Route exact path="/ion-t-evangelio/profile">
             <Profile />
           </Route>
           <Route exact path="/ion-t-evangelio/home/clickcounter">
