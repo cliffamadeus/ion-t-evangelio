@@ -14,7 +14,7 @@ const Menu: React.FC = () => {
   const sidemenuItems = [
     {
       name:'Home1',
-      url:'/ion-t-evangelio/app/home1',
+      url:'/ion-t-evangelio/app/home',
       icon:homeOutline
     }
   ]
