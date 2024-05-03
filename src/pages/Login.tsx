@@ -1,5 +1,13 @@
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, 
-    useIonRouter, IonButton
+    useIonRouter, IonButton,
+    IonList,
+    IonInput,
+    IonItem,
+    IonCard,
+    IonCardContent,
+    IonCardHeader,
+    IonCardSubtitle,
+    IonCardTitle
   } from '@ionic/react';
 
   const Login: React.FC = () => {
@@ -13,16 +21,24 @@ import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar,
       <IonPage>
         <IonHeader>
           <IonToolbar>
-            <IonTitle>Login</IonTitle>
+            <IonTitle class="ion-text-center">Application Library</IonTitle>
           </IonToolbar>
         </IonHeader>
         <IonContent fullscreen>
-          <IonHeader collapse="condense">
-            <IonToolbar>
-              <IonTitle size="large">Login</IonTitle>
-            </IonToolbar>
-          </IonHeader>
-          <IonButton onClick={() => doLogin()} expand="full">Login</IonButton>
+    
+          <IonCard>
+          <IonCardHeader>
+            <IonCardTitle>Login</IonCardTitle>
+          </IonCardHeader>
+
+          <IonCardContent>
+            <IonInput label="Username"  value="hexedhorizon" disabled={true}></IonInput>
+            <IonInput label="Password:" type="password" value=""></IonInput>
+            <IonButton onClick={() => doLogin()} expand="block">Login</IonButton>
+          </IonCardContent>
+        </IonCard>
+
+        
         </IonContent>
       </IonPage>
     );
