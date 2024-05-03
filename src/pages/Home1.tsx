@@ -96,7 +96,7 @@ const Home: React.FC = () => {
                     <IonGrid>
                       <IonRow>
                         <IonCol size="2">
-                          <IonIcon className="home-card-icon" icon={card.icon} color="primary" />
+                          <IonIcon className="home-card-icon" icon={card.icon} color="secondary" />
                         </IonCol>
                         <IonCol size="auto">
                             <div className="home-card-title">{card.title}</div>

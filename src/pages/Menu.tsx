@@ -14,7 +14,7 @@ import Profile from './profile/profile';
 const Menu: React.FC = () => {
   const sidemenuItems = [
     {
-      name:'Home1',
+      name:'Home',
       url:'/ion-t-evangelio/app/home',
       icon:homeOutline
     },
