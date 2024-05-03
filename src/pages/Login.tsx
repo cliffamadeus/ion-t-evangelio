@@ -7,7 +7,13 @@ import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar,
     IonCardContent,
     IonCardHeader,
     IonCardSubtitle,
-    IonCardTitle
+    IonCardTitle,
+    IonImg,
+    IonCol,
+    IonGrid,
+    IonRow,
+    IonAvatar,
+    IonLabel
   } from '@ionic/react';
 
   const Login: React.FC = () => {
@@ -19,26 +25,44 @@ import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar,
   
     return (
       <IonPage>
-        <IonHeader>
-          <IonToolbar>
-            <IonTitle class="ion-text-center">Application Library</IonTitle>
-          </IonToolbar>
-        </IonHeader>
-        <IonContent fullscreen>
-    
-          <IonCard>
-          <IonCardHeader>
-            <IonCardTitle>Login</IonCardTitle>
-          </IonCardHeader>
+       
+        <IonContent  className="ion-padding">
+        <IonGrid fixed={true}>
+          <IonRow className='login-col-padding ion-justify-content-center' >
+            <IonCol push="4.3">
+              <IonAvatar class='login-avatar'>
+                  <img alt="Silhouette of a person's head" src="https://raw.githubusercontent.com/hexedhorizon/ion-t-evangelio/main/src/assets/img/avatar.PNG" />
+              </IonAvatar>
+            </IonCol> 
+          </IonRow>
+          <IonRow class="ion-justify-content-center">
+            <IonCol>
+              <IonCard className="ion-padding">
+              <div className='login-card-padding'></div>
+                
+                  <IonCardTitle className='login-card-title' >User Login</IonCardTitle>
+                  <br />
+                  <IonInput  label="Username:" value="hexedhorizon"labelPlacement="floating" fill="outline" placeholder="Enter text"></IonInput>
+                  <br />
+                  <IonInput label="Password:" type="password" value="" labelPlacement="floating" fill="outline" placeholder="Enter text"></IonInput>
 
-          <IonCardContent>
-            <IonInput label="Username"  value="hexedhorizon" disabled={true}></IonInput>
-            <IonInput label="Password:" type="password" value=""></IonInput>
-            <IonButton onClick={() => doLogin()} expand="block">Login</IonButton>
-          </IonCardContent>
-        </IonCard>
-
-        
+                  <IonRow >
+                    <IonCol >
+                    <IonButton onClick={() => doLogin()} expand="block">Login</IonButton>
+                    </IonCol>
+               
+                  </IonRow>
+                  <IonRow >
+                    <IonCol >
+                    <IonButton onClick={() => doLogin()} expand="block" color="secondary">Signup</IonButton>
+                    </IonCol>
+               
+                  </IonRow>
+              
+              </IonCard>
+            </IonCol>
+          </IonRow>
+        </IonGrid>
         </IonContent>
       </IonPage>
     );

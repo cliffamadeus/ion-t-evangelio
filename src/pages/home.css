@@ -10,3 +10,25 @@
 .home-card-subicon {
     font-size: 1rem;
 }
+
+.login-col-padding {
+   padding-top: 10em;
+}
+
+.login-avatar{
+    width: 9em;
+    height: 9em;
+    position: absolute;
+    top: -45px; /* Adjust this value to position the avatar where you want */
+    left: 15%; /* Adjust this value to horizontally center the avatar */
+    transform: translateX(-50%);
+    z-index: 1; /* Ensure the avatar appears above the card */
+}
+
+.login-card-padding{
+    padding-top: 5em;
+}
+
+.login-card-title{
+    text-align: center;
+}
