@@ -72,8 +72,8 @@ const Profile: React.FC = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonButtons slot='start'>
-              <IonBackButton defaultHref='/app/'/>
+           <IonButtons slot='start'>
+              <IonBackButton defaultHref='/app/home'/>
            </IonButtons>
           <IonTitle>Profile</IonTitle>
         </IonToolbar>
@@ -91,7 +91,7 @@ const Profile: React.FC = () => {
             <IonRow>
                 <IonCol size="1.5" push="">
                   <IonAvatar>
-                    <img alt="Silhouette of a person's head" src="../src/assets/img/avatar.png" />
+                    <img alt="profile" src="https://github.com/hexedhorizon/ion-t-evangelio/blob/main/src/assets/img/avatar.PNG" />
                   </IonAvatar>
                 </IonCol>
                 <IonCol size="9" pull="">
