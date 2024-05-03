@@ -1,0 +1,51 @@
+.profile-col-padding {
+    padding-top: 10em;
+ }
+ 
+ .profile-avatar{
+     width: 9em;
+     height: 9em;
+     position: absolute;
+     top: -9em; 
+     left: 15%; 
+     transform: translateX(-50%);
+
+     
+ }
+ 
+ .profile-card-padding{
+     padding-top: 5em;
+ }
+ 
+ .profilecard-title{
+     text-align: center;
+ }
+
+ .profile-ion-badge {
+    --background: rgb(0, 177, 247);
+    --color: white;
+    margin-top: 3em;
+    text-align: center;
+    border-radius: 50%;
+    height: 35px;
+    width: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 7em;
+    margin-top: -2.5em;
+    z-index: 2; 
+  }
+
+  .profile-stats{
+    font-size: medium;
+  }
+
+  .profile-vertical-divider {
+    width: 2px;
+    height: 100%;
+    background-color: #ccc;
+  
+    border-radius: 1px;
+  
+  }

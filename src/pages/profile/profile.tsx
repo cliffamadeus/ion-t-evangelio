@@ -26,18 +26,21 @@ import {
   IonAlert,
   IonActionSheet,
   IonAvatar,
-  IonThumbnail
+  IonThumbnail,
+  IonBadge
 } from '@ionic/react';
 import './profile.css';
 
 //Dynamic data reference
 import rizzCard from '../../assets/json/rizzCard.json';
+import { bandageOutline } from 'ionicons/icons';
 
 const Profile: React.FC = () => {
 
 
   const [showAlert, setShowAlert] = useState(false);
   const [randomIndex, setRandomIndex] =  useState<number | null>(null); // State to store random index
+  const [isOpen, setIsOpen] = useState(false);
 
   // Function to generate a random index
   const generateRandomIndex = () => {
@@ -66,15 +69,13 @@ const Profile: React.FC = () => {
     setShowAlert(false); // Hide the alert
   };
 
-  
-  
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar>
-           <IonButtons slot='start'>
-              <IonBackButton defaultHref='/app/home'/>
-           </IonButtons>
+          <IonButtons slot='start'>
+            <IonBackButton defaultHref='/app/home'/>
+          </IonButtons>
           <IonTitle>Profile</IonTitle>
         </IonToolbar>
       </IonHeader>
@@ -84,76 +85,56 @@ const Profile: React.FC = () => {
             <IonTitle size="large">Profile</IonTitle>
           </IonToolbar>
         </IonHeader>
-
-        <IonCard>
-          {/*Avatar and name*/}
-          <IonGrid>
-            <IonRow>
-                <IonCol size="1.5" push="">
-                  <IonAvatar>
-                    <img alt="profile" src="https://github.com/hexedhorizon/ion-t-evangelio/blob/main/src/assets/img/avatar.PNG" />
-                  </IonAvatar>
-                </IonCol>
-                <IonCol size="9" pull="">
-                  <IonCardTitle>Cliff Amadeus F. Evangelio</IonCardTitle>
-                  <IonCardSubtitle>Instructor 1 - NBSC BSIT</IonCardSubtitle>
-                </IonCol>
-            </IonRow>
-          </IonGrid>
-
-          {/*Button Grid*/}
-          <IonGrid>
-            <IonRow>
-                <IonCol size="" push="">
-
-                <IonButton id="present-alert" color="warning" expand="full" onClick={handleOpenAlert}>
-                  Quick Facts
-                </IonButton>
+        <IonGrid fixed={true}>
+          <IonRow className='login-col-padding ion-justify-content-center' >
+            <IonCol push="4.3">
+              <IonAvatar onClick={handleOpenAlert} class='profile-avatar'>
+                <img alt="Silhouette of a person's head" src="https://raw.githubusercontent.com/hexedhorizon/ion-t-evangelio/main/src/assets/img/avatar.PNG" />
                 <IonAlert
-                  isOpen={showAlert}
-                  onDidDismiss={handleAlertDismiss} // Call the handleAlertDismiss function when the alert is closed
-                  header="Rizz"
+                        isOpen={showAlert}
+                        onDidDismiss={handleAlertDismiss} 
+                        header="Rizz"
+                        subHeader=""
+                        message={renderRandomMessage()}
+                        buttons={['Close']}
+                      />
+                
+              </IonAvatar>
+              <IonBadge class="profile-ion-badge" onClick={() => setIsOpen(true)}><IonIcon icon={bandageOutline} size="large" color="light"></IonIcon></IonBadge>
+                <IonAlert
+                  isOpen={isOpen}
+                  header="Healing Stage"
                   subHeader=""
-                  message={renderRandomMessage()}
-                  buttons={['Close']}
-                />
-
-                </IonCol>
-                <IonCol size="" pull="">
-                  <IonButton fill="clear" id="open-action-sheet" expand="block">Open Action Sheet</IonButton>
-                </IonCol>
-            </IonRow>
-          </IonGrid>
-          <IonCardContent>Quote: Nothing more, nothing less.</IonCardContent>
-             
-          {/* Actionsheet*/}
-          <IonActionSheet
-            trigger="open-action-sheet"
-            header="Actions"
-            buttons={[
-              {
-                text: 'Delete',
-                role: 'destructive',
-                data: {
-                  action: 'delete',
-                },
-              },
-              {
-                text: 'Share',
-                data: {
-                  action: 'share',
-                },
-              },
-              {
-                text: 'Cancel',
-                role: 'cancel',
-                data: {
-                  action: 'cancel',
-                },
-              },
-            ]}
-          ></IonActionSheet>
-        </IonCard>  
+                  message="This profile at the healing stage"
+                  buttons={['Action']}
+                  onDidDismiss={() => setIsOpen(false)}
+                ></IonAlert>
+            </IonCol>
+          </IonRow>
+          <IonRow className='profile-card-title'>
+            <IonCol size="auto" push="3">
+              <IonCardTitle>Cliff Amadeus F. Evangelio</IonCardTitle>
+              <IonCardSubtitle>Instructor 1 - NBSC BSIT</IonCardSubtitle>
+            </IonCol>
+          </IonRow>
+          <IonRow >
+            <IonCol>
+              <IonCard className="ion-padding"> 
+              <IonCardTitle className='profile-stats'>Current Stats</IonCardTitle>
+                <IonRow>
+                    <IonCol>
+                      <h6>Applets:</h6>
+                      <h3>5</h3>
+                    </IonCol>
+                    <IonCol>
+                      <h6>Other Stats</h6>
+                      <h3>00</h3>
+                    </IonCol>
+                </IonRow>
+              </IonCard>
+            </IonCol>
+          </IonRow>
+        </IonGrid>
       </IonContent>
     </IonPage>
   );
