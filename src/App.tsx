@@ -45,8 +45,7 @@ setupIonicReact();
 const App: React.FC = () => (
   <IonApp>
     <IonReactRouter>
-      <IonTabs>
-        <IonRouterOutlet>
+    <IonRouterOutlet>
           
           {/* Application default route */}
            <Route exact path="/ion-t-evangelio/">
@@ -85,22 +84,6 @@ const App: React.FC = () => (
 
         </IonRouterOutlet>
 
-      {/* Tab Buttons */}
-        <IonTabBar slot="bottom">
-
-          <IonTabButton tab="home" href="/ion-t-evangelio/home">
-            <IonIcon aria-hidden="true" icon={home} />
-            <IonLabel>Home</IonLabel>
-          </IonTabButton>
-       
-          <IonTabButton tab="profile" href="/ion-t-evangelio/home/profile">
-            <IonIcon aria-hidden="true" icon={personOutline} />
-            <IonLabel>Profile</IonLabel>
-          </IonTabButton>
-      
-        </IonTabBar>
-
-      </IonTabs>
     </IonReactRouter>
   </IonApp>
 );
