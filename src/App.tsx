@@ -13,6 +13,7 @@ import { IonReactRouter } from '@ionic/react-router';
 import { calculatorOutline, ellipse, home, personOutline, speedometerOutline, square, triangle } from 'ionicons/icons';
 
 import Home from './pages/home';
+import Login from './pages/Login';
 import Profile from './pages/profile/profile';
 import ClickCounter from './pages/clickcounter/clickcounter'; 
 import Calculator from './pages/calculator/calculator';
@@ -49,7 +50,11 @@ const App: React.FC = () => (
           
           {/* Application default route */}
            <Route exact path="/ion-t-evangelio/">
-            <Redirect to="/ion-t-evangelio/home" />
+            <Redirect to="/ion-t-evangelio/Login" />
+          </Route>
+
+          <Route exact path="/ion-t-evangelio/Login">
+            <Login />
           </Route>
 
           <Route exact path="/ion-t-evangelio/home">
