@@ -23,14 +23,25 @@ import {
   IonToolbar,
   IonItemDivider,
   IonSearchbar,
-  IonBadge
+  IonBadge,
+  IonTabs, IonTabBar, IonTabButton, IonRouterOutlet
 } from '@ionic/react';
 
+import { IonReactRouter } from '@ionic/react-router';
+
+import { Route, Redirect } from 'react-router';
+
 //Custom CSS
-import './home.css';
+import './Home.css';
 
 //Ionic Icons
-import { speedometerOutline,calculator,pencil, chatbubble, readerOutline, logoIonic,logoFirebase, logoReact} from 'ionicons/icons';
+import { speedometerOutline,calculator,pencil, chatbubble, readerOutline, logoIonic,logoFirebase, logoReact,
+  playCircle, radio, library, search,
+  personOutline,
+  homeOutline
+} from 'ionicons/icons';
+
+import Profile from './profile/Profile';
 
 const cardData = [
   {
@@ -106,6 +117,29 @@ const Home: React.FC = () => {
             </IonToolbar>
           </IonHeader>
           
+          <IonReactRouter>
+      <IonTabs>
+        <IonRouterOutlet>
+          <Redirect exact path="/" to="/home" />
+          <Route path="/ion-t-evangelio/profile" render={() => <Profile />} exact={true} />
+        </IonRouterOutlet>
+
+        <IonTabBar slot="bottom">
+          <IonTabButton tab="home" href="/ion-t-evangelio/Home">
+            <IonIcon icon={homeOutline} />
+            <IonLabel>Home</IonLabel>
+          </IonTabButton>
+
+          <IonTabButton tab="profile" href="/ion-t-evangelio/Profile">
+            <IonIcon icon={personOutline} />
+            <IonLabel>Profile</IonLabel>
+          </IonTabButton>
+
+        </IonTabBar>
+      </IonTabs>
+    </IonReactRouter>
+
+
           {/*Dynamic Search*/}
           <IonSearchbar 
             value={searchTerm} 

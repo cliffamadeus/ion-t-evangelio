@@ -29,7 +29,7 @@ import {
   IonThumbnail,
   IonBadge
 } from '@ionic/react';
-import './profile.css';
+import './Profile.css';
 
 //Dynamic data reference
 import rizzCard from '../../assets/json/rizzCard.json';

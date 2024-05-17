@@ -25,7 +25,7 @@ import {
   IonSearchbar
 } from '@ionic/react';
 import ExploreContainer from '../../components/ExploreContainer';
-import './calculator.css';
+import './Calculator.css';
 
 const Calculator: React.FC = () => {
   const [inputValue, setInputValue] = useState<string>('');
