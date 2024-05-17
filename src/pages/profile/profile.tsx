@@ -133,6 +133,9 @@ const Profile: React.FC = () => {
                     </IonCol>
                 </IonRow>
               </IonCard>
+              <IonButton routerLink="/ion-t-evangelio/Login" routerDirection="back" expand="full"> 
+            Logout  
+          </IonButton>
             </IonCol>
           </IonRow>
         </IonGrid>

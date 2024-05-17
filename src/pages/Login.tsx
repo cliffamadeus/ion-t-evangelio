@@ -21,13 +21,13 @@ import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar,
   
     return (
       <IonPage>
-      <IonContent  className="ion-padding">
+      <IonContent>
         <IonGrid fixed={true}>
           <IonRow className='login-col-padding ion-justify-content-center' >
           </IonRow>
           <IonRow class="ion-justify-content-center">
             <IonCol>
-              <IonCard className="ion-padding">
+              <IonCard className="ion-padding login-card">
               <div className='login-card-padding'></div>
                 
                   <IonCardTitle className='login-card-title' >User Login</IonCardTitle>
