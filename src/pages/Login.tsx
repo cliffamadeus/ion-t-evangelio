@@ -16,11 +16,11 @@ import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar,
     const navigation = useIonRouter();
   
     const doLogin = () => {
-      navigation.push('/ion-t-evangelio/Tabs','forward','replace');
+      navigation.push('/ion-t-evangelio/app','forward','replace');
     }
   
     return (
-      <IonPage>
+      <IonPage >
       <IonContent>
         <IonGrid fixed={true}>
           <IonRow className='login-col-padding ion-justify-content-center' >

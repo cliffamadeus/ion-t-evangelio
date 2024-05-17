@@ -74,7 +74,7 @@ const Profile: React.FC = () => {
       <IonHeader>
         <IonToolbar>
             <IonButtons slot='start'>
-              <IonBackButton defaultHref='/app/home'/>
+              <IonBackButton defaultHref='/ion-t-home/app'/>
            </IonButtons>
           <IonTitle>Profile</IonTitle>
         </IonToolbar>
@@ -133,9 +133,7 @@ const Profile: React.FC = () => {
                     </IonCol>
                 </IonRow>
               </IonCard>
-              <IonButton routerLink="/ion-t-evangelio/Login" routerDirection="back" expand="full"> 
-            Logout  
-          </IonButton>
+             
             </IonCol>
           </IonRow>
         </IonGrid>

@@ -1,135 +1,49 @@
-import React, { useState } from 'react';
-import {
-  IonBackButton,
-  IonButton,
-  IonButtons,
-  IonCard,
-  IonCardContent,
-  IonCardHeader,
-  IonCardSubtitle,
-  IonCardTitle,
-  IonCol,
-  IonContent,
-  IonGrid,
-  IonHeader,
-  IonIcon,
-  IonInput,
-  IonItem,
-  IonLabel,
-  IonList,
-  IonPage,
-  IonRow,
-  IonTitle,
-  IonToolbar,
-  IonItemDivider,
-  IonSearchbar,
-  IonBadge,
-  IonTabs, IonTabBar, IonTabButton, IonRouterOutlet
-} from '@ionic/react';
-
+import React from 'react';
+import { IonTabs, IonTabBar, IonTabButton, IonIcon, IonLabel, IonRouterOutlet } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
+import { Route, Redirect, useHistory } from 'react-router';
+import { appsOutline, homeOutline, logOutOutline, personOutline, playCircle, radio } from 'ionicons/icons';
+import HomePage from './apps/HomePage';
+import Login from './Login';
+import ProfilePage from './profile/Profile'
 
-import { Route, Redirect } from 'react-router';
+function Example() {
+  const history = useHistory();
 
-//Custom CSS
-import './Home.css';
-
-//Ionic Icons
-import { speedometerOutline,calculator,pencil, chatbubble, readerOutline, logoIonic,logoFirebase, logoReact,
-  playCircle, radio, library, search,
-  personOutline,
-  homeOutline
-} from 'ionicons/icons';
-
-import Profile from './profile/Profile';
-import Applets from './applets/Applets';
-
-const cardData = [
-  {
-    title: 'Click Counter',
-    icon: speedometerOutline,
-    subtitle: 'Applet #1',
-    link: '/ion-t-evangelio/home/clickcounter',
-    tags: {
-      tag1: logoIonic,
-      tag2: logoReact
-    }
-
-  },
-  {
-    title: 'Calculator',
-    icon: calculator,
-    subtitle: 'Applet #2',
-    link: '/ion-t-evangelio/home/calculator',
-    tags: {
-      tag1: logoIonic,
-      tag2: logoReact
-    }
-  },
-  {
-    title: 'To Do List',
-    icon: pencil,
-    subtitle: 'Applet #3',
-    link: '/ion-t-evangelio/home/todolist',
-    tags: {
-      tag1: logoIonic,
-      tag2: logoReact
-    }
-  },
-  {
-    title: 'Quote Generator',
-    icon: chatbubble,
-    subtitle: 'Applet #4',
-    link: '/ion-t-evangelio/home/quotegenerator',
-    tags: {
-      tag1: logoIonic,
-      tag2: logoReact
-    }
-  },
-  {
-    title: 'Notes',
-    icon: readerOutline,
-    subtitle: 'Applet #5',
-    link: '/ion-t-evangelio/home/notes',
-    tags: {
-      tag1: logoIonic,
-      tag2: logoReact, 
-      tag3: logoFirebase 
-    }
-  }
-  
-];
-
-const Home: React.FC = () => {
-  {/*Dynamic Search*/}
-  const [searchTerm, setSearchTerm] = useState<string>('');
+  const handleLogoutClick = () => {
+    // Navigate to the desired route and replace the current entry in the history stack
+    history.replace('/ion-t-evangelio/');
+  };
 
   return (
-    <IonPage>
-      <IonReactRouter>
-        <IonTabs>
-          <IonRouterOutlet>
-            <Redirect exact path="/ion-t-evangelio/Tabs" to="/ion-t-evangelio/Applets" />
-            <Route path="/ion-t-evangelio/Applets" render={() => <Applets />}  />
-            <Route path="/ion-t-evangelio/profile" render={() => <Profile />} exact={true} />
-          </IonRouterOutlet>
+    <IonReactRouter>
+      <IonTabs>
+        <IonRouterOutlet>
+          <Route exact path="/ion-t-evangelio/" component={Login} />
+          <Route path="/ion-t-evangelio/home" render={() => <HomePage />} exact={true} />
+          <Route path="/ion-t-evangelio/Profile" render={() => <ProfilePage />} exact={true} />
+          <Redirect exact from="/ion-t-evangelio/app" to="/ion-t-evangelio/home" />
+        </IonRouterOutlet>
 
-          <IonTabBar slot="bottom">
-            <IonTabButton tab="home" href="/ion-t-evangelio/Applets">
-              <IonIcon icon={homeOutline} />
-              <IonLabel>Applets</IonLabel>
-            </IonTabButton>
+        <IonTabBar slot="bottom">
+          <IonTabButton tab="home" href="/ion-t-evangelio/home">
+            <IonIcon icon={appsOutline} />
+            <IonLabel>Apps</IonLabel>
+          </IonTabButton>
 
-            <IonTabButton tab="profile" href="/ion-t-evangelio/Profile">
-              <IonIcon icon={personOutline} />
-              <IonLabel>Profile</IonLabel>
-            </IonTabButton>
-          </IonTabBar>
-        </IonTabs>
-      </IonReactRouter>
-    </IonPage>
+          <IonTabButton tab="profile" href="/ion-t-evangelio/Profile">
+            <IonIcon icon={personOutline} />
+            <IonLabel>Profile</IonLabel>
+          </IonTabButton>
+          
+          <IonTabButton tab="logout" onClick={handleLogoutClick}>
+            <IonIcon icon={logOutOutline} />
+            <IonLabel>Logout</IonLabel>
+          </IonTabButton>
+        </IonTabBar>
+      </IonTabs>
+    </IonReactRouter>
   );
-};
+}
 
-export default Home;
-  
+export default Example;

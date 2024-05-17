@@ -33,7 +33,7 @@ import { IonReactRouter } from '@ionic/react-router';
 import { Route, Redirect, useHistory } from 'react-router';
 
 //Custom CSS
-import './Applets.css';
+import './Apps.css';
 
 //Ionic Icons
 import { speedometerOutline,calculator,pencil, chatbubble, readerOutline, logoIonic,logoFirebase, logoReact,
