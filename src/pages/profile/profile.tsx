@@ -73,9 +73,9 @@ const Profile: React.FC = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonButtons slot='start'>
-            <IonBackButton defaultHref='/app/home'/>
-          </IonButtons>
+            <IonButtons slot='start'>
+              <IonBackButton defaultHref='/app/home'/>
+           </IonButtons>
           <IonTitle>Profile</IonTitle>
         </IonToolbar>
       </IonHeader>
