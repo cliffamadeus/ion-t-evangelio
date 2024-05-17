@@ -39,7 +39,9 @@ import './Applets.css';
 import { speedometerOutline,calculator,pencil, chatbubble, readerOutline, logoIonic,logoFirebase, logoReact,
   playCircle, radio, library, search,
   personOutline,
-  homeOutline
+  homeOutline,
+  logOut,
+  logOutOutline
 } from 'ionicons/icons';
 
 
@@ -104,72 +106,71 @@ const Applets: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState<string>('');
   const navigation = useIonRouter();
   
-  const doLogin = () => {
+  const doLogout = () => {
     navigation.push('/ion-t-evangelio/Login','forward','replace');
   }
 
-  
-    return (
-      <IonPage>
-        <IonHeader>
+  return (
+    <IonPage>
+      <IonHeader>
         <IonToolbar>
-      <IonButtons slot="end">
-      <IonButton onClick={() => doLogin()} expand="block">Login</IonButton>
-      </IonButtons>
-      <IonTitle>Applets</IonTitle>
-    </IonToolbar>
+        <IonButtons slot="end">
+            <IonButton onClick={() => doLogout()} expand="block">
+              <IonIcon slot="start" icon={logOutOutline} /> Logout
+            </IonButton>
+          </IonButtons>
 
-        </IonHeader>
+          <IonTitle>Applets</IonTitle>
+        </IonToolbar>
+      </IonHeader>
      
-        <IonContent fullscreen>
-          <IonHeader collapse="condense">
-            <IonToolbar>
-              <IonTitle size="large">Applets</IonTitle>
-            </IonToolbar>
-          </IonHeader>
-          
-         
+      <IonContent fullscreen>
+        <IonHeader collapse="condense">
+          <IonToolbar>
+            <IonTitle size="large">Applets</IonTitle>
+          </IonToolbar>
+        </IonHeader>
 
-
-          {/*Dynamic Search*/}
-          <IonSearchbar 
-            value={searchTerm} 
-            onIonInput={(e) => setSearchTerm(e.target.value ?? '')} 
-          />
-          
-          {cardData
-            .filter((card) => card.title.toLowerCase().includes(searchTerm.toLowerCase()))
-            .map((card, index) => (
-              <IonCard key={index} routerLink={card.link} routerDirection='forward'>
-                <IonCardHeader>
-                  <IonCardTitle>
-                    <IonGrid>
-                      <IonRow>
-                        <IonCol size="2">
-                          <IonIcon className="home-card-icon" icon={card.icon} color="primary" />
-                        </IonCol>
-                        <IonCol size="auto">
-                            <div className="home-card-title">{card.title}</div>
-                            <IonCardSubtitle>{card.subtitle}</IonCardSubtitle>
-                            {card.tags && Object.entries(card.tags).map(([key, icon], i) => (
-                              <IonIcon
-                                key={i}
-                                className="home-card-subicon"
-                                icon={icon}
-                                color="primary" // Set color as needed
-                              />
-                            ))}
-                          </IonCol>
-                      </IonRow>
-                    </IonGrid>
-                  </IonCardTitle>
-                </IonCardHeader>
-              </IonCard>
-          ))}
-        </IonContent>
-      </IonPage>
-    );
+        {/*Dynamic Search*/}
+        <IonSearchbar 
+          value={searchTerm} 
+          onIonInput={(e) => setSearchTerm(e.target.value ?? '')} 
+        />
+        
+        {cardData
+          .filter((card) => card.title.toLowerCase().includes(searchTerm.toLowerCase()))
+          .map((card, index) => (
+            <IonCard key={index} routerLink={card.link} routerDirection='forward'>
+              <IonCardHeader>
+                <IonCardTitle>
+                  <IonGrid>
+                    <IonRow>
+                      <IonCol size="2">
+                        <IonIcon className="home-card-icon" icon={card.icon} color="primary" />
+                      </IonCol>
+                      <IonCol size="auto">
+                        <div className="home-card-title">{card.title}</div>
+                        <IonCardSubtitle>{card.subtitle}</IonCardSubtitle>
+                        {card.tags && Object.entries(card.tags).map(([key, icon], i) => (
+                          <IonIcon
+                            key={i}
+                            className="home-card-subicon"
+                            icon={icon}
+                            color="primary" // Set color as needed
+                          />
+                        ))}
+                      </IonCol>
+                    </IonRow>
+                  </IonGrid>
+                </IonCardTitle>
+              </IonCardHeader>
+            </IonCard>
+        ))}
+      </IonContent>
+    </IonPage>
+  );
 };
+
   
 export default Applets;
   
