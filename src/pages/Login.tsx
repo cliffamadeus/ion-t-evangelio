@@ -16,7 +16,7 @@ import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar,
     const navigation = useIonRouter();
   
     const doLogin = () => {
-      navigation.push('/ion-t-evangelio/Home','forward','replace');
+      navigation.push('/ion-t-evangelio/Tabs','forward','replace');
     }
   
     return (

@@ -24,15 +24,16 @@ import {
   IonItemDivider,
   IonSearchbar,
   IonBadge,
-  IonTabs, IonTabBar, IonTabButton, IonRouterOutlet
+  IonTabs, IonTabBar, IonTabButton, IonRouterOutlet,
+  useIonRouter
 } from '@ionic/react';
 
 import { IonReactRouter } from '@ionic/react-router';
 
-import { Route, Redirect } from 'react-router';
+import { Route, Redirect, useHistory } from 'react-router';
 
 //Custom CSS
-import './Home.css';
+import './Applets.css';
 
 //Ionic Icons
 import { speedometerOutline,calculator,pencil, chatbubble, readerOutline, logoIonic,logoFirebase, logoReact,
@@ -41,14 +42,13 @@ import { speedometerOutline,calculator,pencil, chatbubble, readerOutline, logoIo
   homeOutline
 } from 'ionicons/icons';
 
-import Profile from './profile/Profile';
 
 const cardData = [
   {
     title: 'Click Counter',
     icon: speedometerOutline,
     subtitle: 'Applet #1',
-    link: '/ion-t-evangelio/home/clickcounter',
+    link: '/ion-t-evangelio/Applets/Clickcounter',
     tags: {
       tag1: logoIonic,
       tag2: logoReact
@@ -59,7 +59,7 @@ const cardData = [
     title: 'Calculator',
     icon: calculator,
     subtitle: 'Applet #2',
-    link: '/ion-t-evangelio/home/calculator',
+    link: '/ion-t-evangelio/Applets/Calculator',
     tags: {
       tag1: logoIonic,
       tag2: logoReact
@@ -69,7 +69,7 @@ const cardData = [
     title: 'To Do List',
     icon: pencil,
     subtitle: 'Applet #3',
-    link: '/ion-t-evangelio/home/todolist',
+    link: '/ion-t-evangelio/Applets/Todolist',
     tags: {
       tag1: logoIonic,
       tag2: logoReact
@@ -79,7 +79,7 @@ const cardData = [
     title: 'Quote Generator',
     icon: chatbubble,
     subtitle: 'Applet #4',
-    link: '/ion-t-evangelio/home/quotegenerator',
+    link: '/ion-t-evangelio/Applets/Quotegenerator',
     tags: {
       tag1: logoIonic,
       tag2: logoReact
@@ -89,7 +89,7 @@ const cardData = [
     title: 'Notes',
     icon: readerOutline,
     subtitle: 'Applet #5',
-    link: '/ion-t-evangelio/home/notes',
+    link: '/ion-t-evangelio/Applets/Notes',
     tags: {
       tag1: logoIonic,
       tag2: logoReact, 
@@ -99,45 +99,36 @@ const cardData = [
   
 ];
 
-const Home: React.FC = () => {
+const Applets: React.FC = () => {
   {/*Dynamic Search*/}
   const [searchTerm, setSearchTerm] = useState<string>('');
+  const navigation = useIonRouter();
+  
+  const doLogin = () => {
+    navigation.push('/ion-t-evangelio/Login','forward','replace');
+  }
+
   
     return (
       <IonPage>
         <IonHeader>
-          <IonToolbar>
-            <IonTitle>Home</IonTitle>
-          </IonToolbar>
+        <IonToolbar>
+      <IonButtons slot="end">
+      <IonButton onClick={() => doLogin()} expand="block">Login</IonButton>
+      </IonButtons>
+      <IonTitle>Applets</IonTitle>
+    </IonToolbar>
+
         </IonHeader>
+     
         <IonContent fullscreen>
           <IonHeader collapse="condense">
             <IonToolbar>
-              <IonTitle size="large">Home</IonTitle>
+              <IonTitle size="large">Applets</IonTitle>
             </IonToolbar>
           </IonHeader>
           
-          <IonReactRouter>
-      <IonTabs>
-        <IonRouterOutlet>
-          <Redirect exact path="/" to="/home" />
-          <Route path="/ion-t-evangelio/profile" render={() => <Profile />} exact={true} />
-        </IonRouterOutlet>
-
-        <IonTabBar slot="bottom">
-          <IonTabButton tab="home" href="/ion-t-evangelio/Home">
-            <IonIcon icon={homeOutline} />
-            <IonLabel>Home</IonLabel>
-          </IonTabButton>
-
-          <IonTabButton tab="profile" href="/ion-t-evangelio/Profile">
-            <IonIcon icon={personOutline} />
-            <IonLabel>Profile</IonLabel>
-          </IonTabButton>
-
-        </IonTabBar>
-      </IonTabs>
-    </IonReactRouter>
+         
 
 
           {/*Dynamic Search*/}
@@ -180,5 +171,5 @@ const Home: React.FC = () => {
     );
 };
   
-export default Home;
+export default Applets;
   

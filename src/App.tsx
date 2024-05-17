@@ -12,8 +12,9 @@ import {
 import { IonReactRouter } from '@ionic/react-router';
 import { calculatorOutline, ellipse, home, personOutline, speedometerOutline, square, triangle } from 'ionicons/icons';
 
-import Home from './pages/Home';
+import Tabs from './pages/Tabs';
 import Login from './pages/Login';
+import Applets from './pages/applets/Applets';
 import Profile from './pages/profile/Profile';
 import ClickCounter from './pages/clickcounter/Clickcounter'; 
 import Calculator from './pages/calculator/Calculator';
@@ -56,29 +57,33 @@ const App: React.FC = () => (
             <Login />
           </Route>
 
-          <Route exact path="/ion-t-evangelio/home">
-            <Home />
+          <Route exact path="/ion-t-evangelio/Tabs">
+            <Tabs />
           </Route>
 
-          <Route exact path="/ion-t-evangelio/home/profile">
+          <Route exact path="/ion-t-evangelio/Applets">
+            <Applets />
+          </Route>
+          
+          <Route exact path="/ion-t-evangelio/Applets/Profile">
             <Profile />
           </Route>
-          <Route exact path="/ion-t-evangelio/home/clickcounter">
+          <Route exact path="/ion-t-evangelio/Applets/Clickcounter">
             <ClickCounter />
           </Route>
-          <Route path="/ion-t-evangelio/home/calculator">
+          <Route path="/ion-t-evangelio/Applets/Calculator">
             <Calculator />
           </Route>
 
-          <Route path="/ion-t-evangelio/home/todolist">
+          <Route path="/ion-t-evangelio/Applets/Todolist">
             <Todolist />
           </Route>
 
-          <Route path="/ion-t-evangelio/home/quotegenerator">
+          <Route path="/ion-t-evangelio/Applets/Quotegenerator">
             <QuoteGenerator />
           </Route>
 
-          <Route path="/ion-t-evangelio/home/notes">
+          <Route path="/ion-t-evangelio/Applets/Notes">
             <Notes />
           </Route>
 
