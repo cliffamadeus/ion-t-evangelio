@@ -10,7 +10,7 @@ import {
 import { arrowUndo,caretBack} from 'ionicons/icons';
 
 import React, { useState } from 'react';
-import './clickcounter.css';
+import './Clickcounter.css';
 
 
 const ClickCounter: React.FC = () => {

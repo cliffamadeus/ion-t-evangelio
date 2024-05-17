@@ -26,7 +26,7 @@ import {
 //Ionicons
 import { trashOutline,pencilOutline} from 'ionicons/icons';
 
-import './todolist.css';
+import './Todolist.css';
 
 const Todolist: React.FC = () => {
   const [todos, setTodos] = useState<string[]>([]);

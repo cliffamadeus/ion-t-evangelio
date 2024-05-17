@@ -12,13 +12,14 @@ import {
 import { IonReactRouter } from '@ionic/react-router';
 import { calculatorOutline, ellipse, home, personOutline, speedometerOutline, square, triangle } from 'ionicons/icons';
 
-import Home from './pages/home';
-import Profile from './pages/profile/profile';
-import ClickCounter from './pages/clickcounter/clickcounter'; 
-import Calculator from './pages/calculator/calculator';
-import Todolist from './pages/todolist/todolist';
-import QuoteGenerator from './pages/quotegenerator/quotegenerator';
-import Notes from './pages/notes/notes';
+import Home from './pages/Home';
+import Login from './pages/Login';
+import Profile from './pages/profile/Profile';
+import ClickCounter from './pages/clickcounter/Clickcounter'; 
+import Calculator from './pages/calculator/Calculator';
+import Todolist from './pages/todolist/Todolist';
+import QuoteGenerator from './pages/quotegenerator/Quotegenerator';
+import Notes from './pages/notes/Notes';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -44,19 +45,22 @@ setupIonicReact();
 const App: React.FC = () => (
   <IonApp>
     <IonReactRouter>
-      <IonTabs>
-        <IonRouterOutlet>
+    <IonRouterOutlet>
           
           {/* Application default route */}
            <Route exact path="/ion-t-evangelio/">
-            <Redirect to="/ion-t-evangelio/home" />
+            <Redirect to="/ion-t-evangelio/Login" />
+          </Route>
+
+          <Route exact path="/ion-t-evangelio/Login">
+            <Login />
           </Route>
 
           <Route exact path="/ion-t-evangelio/home">
             <Home />
           </Route>
 
-          <Route exact path="/ion-t-evangelio/profile">
+          <Route exact path="/ion-t-evangelio/home/profile">
             <Profile />
           </Route>
           <Route exact path="/ion-t-evangelio/home/clickcounter">
@@ -80,22 +84,6 @@ const App: React.FC = () => (
 
         </IonRouterOutlet>
 
-      {/* Tab Buttons */}
-        <IonTabBar slot="bottom">
-
-          <IonTabButton tab="home" href="/ion-t-evangelio/home">
-            <IonIcon aria-hidden="true" icon={home} />
-            <IonLabel>Home</IonLabel>
-          </IonTabButton>
-       
-          <IonTabButton tab="profile" href="/ion-t-evangelio/profile">
-            <IonIcon aria-hidden="true" icon={personOutline} />
-            <IonLabel>Profile</IonLabel>
-          </IonTabButton>
-      
-        </IonTabBar>
-
-      </IonTabs>
     </IonReactRouter>
   </IonApp>
 );

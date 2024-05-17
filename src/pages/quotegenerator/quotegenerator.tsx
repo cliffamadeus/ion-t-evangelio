@@ -66,7 +66,7 @@ const QuoteGenerator: React.FC = () => {
   
   return (
     <IonPage>
-      <IonContent className='ion-padding'>
+      <IonContent>
       <IonHeader>
         <IonToolbar>
            <IonButtons slot='start'>

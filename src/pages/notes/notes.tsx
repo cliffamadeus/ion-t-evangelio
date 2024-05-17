@@ -28,11 +28,11 @@ import {
 //Ionicons
 import { trashOutline, pencilOutline } from 'ionicons/icons';
 
-import './notes.css';
+import './Notes.css';
 
 // Firebase
 import { collection, addDoc, onSnapshot,updateDoc,doc, deleteDoc} from 'firebase/firestore';
-import { db } from './firebase';
+import { db } from './Firebase';
 
 const Todolist: React.FC = () => {
   const [notes, readNotes] = useState<{ id: string; title: string; description: string;dateAdded: string; }[]>([]);
